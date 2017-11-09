@@ -1,9 +1,11 @@
 package com.each.cdl.integration;
 
+import com.each.cdl.config.BookShareProperties;
 import com.each.cdl.integration.responses.AnuncioResponse;
 import com.each.cdl.integration.responses.LoginResponse;
 import com.each.cdl.model.Anuncio;
 import com.each.cdl.model.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +15,9 @@ import java.util.List;
 
 @Component
 public class AnuncioIntegration {
+
+    @Autowired
+    BookShareProperties properties;
 
     private HttpHeaders getDefaultHeaders() {
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -37,7 +42,7 @@ public class AnuncioIntegration {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String url = "http://localhost:9999/anuncios/find-all";
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindAll();
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -53,7 +58,7 @@ public class AnuncioIntegration {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String url = "http://localhost:9999/anuncios/find-by-id?id={id}";
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindById();
 
         RestTemplate restTemplate = new RestTemplate();
 

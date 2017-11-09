@@ -1,9 +1,11 @@
 package com.each.cdl.integration;
 
+import com.each.cdl.config.BookShareProperties;
 import com.each.cdl.integration.responses.AnuncioResponse;
 import com.each.cdl.integration.responses.LivroResponse;
 import com.each.cdl.model.Anuncio;
 import com.each.cdl.model.Livro;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +15,9 @@ import java.util.List;
 
 @Component
 public class LivroIntegration {
+
+    @Autowired
+    BookShareProperties properties;
 
     private HttpHeaders getDefaultHeaders() {
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -39,7 +44,7 @@ public class LivroIntegration {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String url = "http://localhost:9999/livros/find-by-id?id={id}";
+        String url = properties.getBookshareServer() + properties.getLivrosPrefix() + properties.getLivrosFindById();
 
         RestTemplate restTemplate = new RestTemplate();
 

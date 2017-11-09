@@ -1,7 +1,9 @@
 package com.each.cdl.integration;
 
+import com.each.cdl.config.BookShareProperties;
 import com.each.cdl.integration.responses.LoginResponse;
 import com.each.cdl.model.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +12,9 @@ import java.util.HashMap;
 
 @Component
 public class UserIntegration {
+
+    @Autowired
+    BookShareProperties properties;
 
     private HttpHeaders getDefaultHeaders() {
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -34,7 +39,7 @@ public class UserIntegration {
         map.put("username", u.getUsername());
         map.put("password", u.getSenha());
 
-        String url = "http://localhost:9999/usuarios/login?username={username}&password={password}";
+        String url = properties.getBookshareServer() + properties.getUsuariosPrefix() + properties.getUsuariosLogin();
 
         RestTemplate rt = new RestTemplate();
         LoginResponse result = rt.postForObject(url, u, LoginResponse.class, map);
@@ -51,7 +56,7 @@ public class UserIntegration {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String url = "http://localhost:9999/usuarios/cadastrar";
+        String url = properties.getBookshareServer() + properties.getUsuariosPrefix() + properties.getUsuariosCadastrar();
 
         RestTemplate restTemplate = new RestTemplate();
 
