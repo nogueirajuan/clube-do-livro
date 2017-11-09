@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.each_previtale_jar_0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.each.cdl.service.bd.amazon.entities.TelefoneLocal</class>
+    <class>com.each.cdl.service.bd.amazon.entities.TelefoneAtletica</class>
+    <class>com.each.cdl.service.bd.amazon.entities.TelefoneUser</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Modalidades</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Aluno</class>
+    <class>com.each.cdl.service.bd.amazon.entities.DiretorModalidade</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Local</class>
+    <class>com.each.cdl.service.bd.amazon.entities.User</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Reserva</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Tecnico</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Atletica</class>
+    <class>com.each.cdl.service.bd.amazon.entities.PracaEsportiva</class>
+    <class>com.each.cdl.service.bd.amazon.entities.Time</class>
+    <class>com.each.cdl.service.bd.amazon.entities.MaterialEsportivo</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://andredbinstance2.cji4mp16okzc.us-east-2.rds.amazonaws.com:3306/trabalho_bd?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="andlopes"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="senhaandre"/>
+    </properties>
+  </persistence-unit>
+</persistence>

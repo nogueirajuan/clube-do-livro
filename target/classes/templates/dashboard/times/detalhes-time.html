@@ -1,0 +1,291 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="masterpages/pagedashboard">
+
+
+    <div layout:fragment="precontent">
+        <ol class="breadcrumb text-right">
+            <li><a th:href="@{/dashboard/}">Home</a></li>
+            <li><a th:href="@{/dashboard/times}">Times</a></li>
+            <li class="active">Detalhes de time</li>
+        </ol>
+    </div>
+
+    <div layout:fragment="content">
+        <br />
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" th:text="${session.aluno.time.nome}"></h3>
+                        </div>
+                        <div class="box-body no-padding">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="https://image.flaticon.com/icons/svg/321/321773.svg" width="50" />
+                                </div>
+                                <div class="col-md-5">
+                                    <strong>Nome:</strong> <span th:text="${time.nome}"></span><br />
+                                    <strong>Gênero:</strong> <span th:text="${time.genero}"></span><br />
+                                    <strong>Modalidade:</strong> <span th:text="${time.modalidadesModalidadesId.nome}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Técnico</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-xs btn-success" type="button" data-toggle="modal" data-target="#modalChangeCoach">Alterar técnico</button>
+                            </div>
+                        </div>
+                        <div class="box-body no-padding">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="https://image.flaticon.com/icons/svg/363/363367.svg" width="50" />
+                                </div>
+                                <div class="col-md-10" th:if="${#lists.size(time.tecnicoList)} > 0">
+                                    <span th:text="${time.tecnicoList[0].user.nome}"></span><br />
+                                    <div th:each="tel : ${time.tecnicoList[0].user.telefoneUserList}">
+                                        <span th:text="${tel.telefoneUserPK.telefone}"></span><br />
+                                    </div>
+                                </div>
+                                <div class="col-md-10" th:if="${#lists.size(time.tecnicoList)} == 0">
+                                    Este time não possui técnico. Clique em Alterar técnico para cadastrar um.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Diretor de Modalidade</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-xs btn-success" type="button" data-toggle="modal" data-target="#modalChangeDM">Alterar DM</button>
+                            </div>
+                        </div>
+                        <div class="box-body no-padding">
+                            <div class="col-md-2">
+                                <img src="https://image.flaticon.com/icons/svg/214/214282.svg" width="50" />
+                            </div>
+                            <div class="col-md-11" th:if="${#lists.size(time.diretorModalidadeList)} > 0">
+                                <span th:text="${time.diretorModalidadeList[0].user.nome}"></span>
+                            </div>
+                            <div class="col-md-10" th:if="${#lists.size(time.diretorModalidadeList)} == 0">
+                                Este time não possui diretor de modalidade. Clique em Alterar DM para cadastrar um.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" th:text="${session.aluno.time.nome}"></h3>
+                            <div class="box-tools pull-right">
+                                
+                                <button class="btn btn-xs btn-success" type="button" data-toggle="modal" data-target="#modalCreateUser">Adicionar aluno</button>
+                            </div>
+                        </div>
+                        <div class="box-body no-padding">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nome</th>
+                                        <th>nº USP</th>
+                                        <th>RG</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="aluno : ${time.AlunoList}">
+                                        <td><img src='https://image.flaticon.com/icons/svg/432/432275.svg' width='48' /></td>
+                                        <td th:text="${aluno.user.nome}">Nome</td>
+                                        <td><span th:text="${aluno.nroUsp}"></span></td>
+                                        <td><span th:text="${aluno.user.rg}"></span></td>
+                                        <td class="text-right">
+                                            <a th:href="${'/dashboard/remover-aluno?id=' + aluno.user.rg}" class="btn btn-xs btn-danger">x</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Reservas de espaço time</h3>
+                            <div class="box-tools pull-right">
+                                <a th:href="@{/dashboard/escolher-praca}" class="btn btn-xs btn-success" >Reservar horário</a>
+                            </div>
+                        </div>
+                        <div class="box-body no-padding">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Início</th>
+                                        <th>Fim</th>
+                                        <th>Motivo</th>
+                                        <th>Praça Esportiva</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="reserva : ${time.reservaList}">
+                                        <td><img src='https://image.flaticon.com/icons/svg/139/139039.svg' width='48' /></td>
+                                        <td th:text="${#dates.format(reserva.data, 'dd/MM/yyyy HH:mm')}"></td>
+                                        <td th:text="${#dates.format(reserva.dataFim, 'dd/MM/yyyy HH:mm')}"></td>
+                                        <td><span th:text="${reserva.motivo}"></span></td>
+                                        <td><span th:text="${reserva.pracaesportivapracaesportivaId.nome}"></span></td>
+                                        <td class="text-right">
+                                            <a th:href="@{/dashboard/remover-reserva-action(id=${reserva.idreserva}, idTime=${param.id[0]})}" class="btn btn-xs btn-danger">x</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- alterar técnico -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalChangeCoach">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="post" th:action="@{/dashboard/criar-tecnico}" class="form-horizontal" style="padding: 10px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Alterar Técnico</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-horizontal" style="padding: 10px;">
+                                <input type="hidden" name="idTime" th:value="${param.id[0]}" />
+                                <div class="form-group">
+                                    <label class="control-label">Nome: </label>
+                                    <input type="text" class="form-control" name="name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">RG: </label>
+                                    <input type="text" class="form-control" name="rg" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Telefone: </label>
+                                    <input type="text" class="form-control" name="telefone" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Celular: </label>
+                                    <input type="text" class="form-control" name="celular" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-sm btn-success">Salvar alterações</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <!-- alterar DM -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalChangeDM">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="post" th:action="@{/dashboard/criar-dm}" class="form-horizontal" style="padding: 10px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Alterar Diretor de Modalidade</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-horizontal" style="padding: 10px;">
+                                <input type="hidden" name="idTime" th:value="${param.id[0]}" />
+                                <div class="form-group">
+                                    <label class="control-label">Nome: </label>
+                                    <input type="text" class="form-control" name="name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">RG: </label>
+                                    <input type="text" class="form-control" name="rg" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Telefone: </label>
+                                    <input type="text" class="form-control" name="telefone" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Celular: </label>
+                                    <input type="text" class="form-control" name="celular" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-sm btn-success">Salvar alterações</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        
+        
+        <!-- alterar aluno -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalCreateUser">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="post" th:action="@{/dashboard/criar-aluno}" class="form-horizontal" style="padding: 10px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Incluir Aluno</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-horizontal" style="padding: 10px;">
+                                <input type="hidden" name="idTime" th:value="${param.id[0]}" />
+                                <div class="form-group">
+                                    <label class="control-label">Nome: </label>
+                                    <input type="text" class="form-control" name="name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">RG: </label>
+                                    <input type="text" class="form-control" name="rg" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Telefone: </label>
+                                    <input type="text" class="form-control" name="telefone" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Celular: </label>
+                                    <input type="text" class="form-control" name="celular" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-sm btn-success">Salvar alterações</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
+
+
+</div>
