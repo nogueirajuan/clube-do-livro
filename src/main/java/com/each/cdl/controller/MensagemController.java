@@ -12,4 +12,7 @@ public class MensagemController {
         return "mensagens";
     }
 
+    @RequestMapping("chat")
+    public String chat() { return "chat"; }
+
 }
