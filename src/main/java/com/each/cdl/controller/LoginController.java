@@ -28,8 +28,8 @@ public class LoginController {
         log.debug("usuário logado: " + session.getAttribute("user"));
 
         if (session != null
-                && session.getAttribute("user") != null
-                && !session.getAttribute("user").toString().isEmpty()) {
+                && session.getAttribute("leitor") != null
+                && !session.getAttribute("leitor").toString().isEmpty()) {
             return "redirect:/";
         }
 

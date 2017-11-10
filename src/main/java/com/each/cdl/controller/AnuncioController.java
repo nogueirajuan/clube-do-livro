@@ -2,6 +2,7 @@ package com.each.cdl.controller;
 
 import com.each.cdl.integration.AnuncioIntegration;
 import com.each.cdl.integration.LivroIntegration;
+import com.each.cdl.integration.UserIntegration;
 import com.each.cdl.model.Anuncio;
 import com.each.cdl.model.Livro;
 import com.each.cdl.model.Usuario;
@@ -18,13 +19,15 @@ import java.util.List;
 @RequestMapping("/anuncio")
 public class AnuncioController {
 
-    HttpSession httpSession;
 
     @Autowired
     AnuncioIntegration anuncioIntegration;
 
     @Autowired
     LivroIntegration livroIntegration;
+
+    @Autowired
+    UserIntegration userIntegration;
 
     @RequestMapping("busca")
     public ModelAndView buscaAnuncio(@RequestParam String nome){
@@ -47,14 +50,14 @@ public class AnuncioController {
     @RequestMapping("cadastrar-anuncio-request")
     public ModelAndView cadastrarAnuncioRequest(@RequestParam String descricao, @RequestParam String idLivro){
 
-        Anuncio novoAnuncio = new Anuncio();
-        novoAnuncio.setAnunciante((Usuario)httpSession.getAttribute("user"));
-        novoAnuncio.setDescricao(descricao);
-        novoAnuncio.setLivro(new Livro(idLivro));
+//
+//        Anuncio novoAnuncio = new Anuncio();
+//        novoAnuncio.setDescricao(descricao);
+//        novoAnuncio.setLivro(new Livro(idLivro));
 
-        anuncioIntegration.cadastrarAnuncio(novoAnuncio);
+        anuncioIntegration.cadastrarAnuncio(descricao, idLivro, new Anuncio());
 
-        return new ModelAndView("redirect:/anuncio/meus-anuncios");
+        return new ModelAndView("redirect:/livro/meus-livros");
 
     }
 

@@ -2,11 +2,13 @@ package com.each.cdl.controller;
 
 import com.each.cdl.integration.AnuncioIntegration;
 import com.each.cdl.integration.LivroIntegration;
+import com.each.cdl.integration.UserIntegration;
 import com.each.cdl.integration.responses.AnuncioResponse;
 import com.each.cdl.model.Anuncio;
 import com.each.cdl.model.Livro;
 import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,14 +40,17 @@ public class LivroController {
     @Autowired
     AnuncioIntegration anuncioIntegration;
 
-    HttpSession httpSession;
+    @Autowired
+    UserIntegration userIntegration;
+
 
     @RequestMapping("meus-livros")
     public ModelAndView meusLivros() {
         ModelAndView mav = new ModelAndView("meus-livros");
 
-        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername(((Usuario) httpSession.getAttribute("user")).getUsername());
+        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername("nogueirajuan");
         mav.addObject("anuncios", anunciosUsername.getAnuncios());
+
         return mav;
     }
 
@@ -80,14 +87,16 @@ public class LivroController {
                                               @RequestParam String isbn,
                                               @RequestParam String autor,
                                               @RequestParam String descricao,
-                                              @RequestParam Date dataPublicacao,
+                                              @RequestParam String dataPublicacao,
                                               @RequestParam String foto) {
 
         ModelAndView mav = new ModelAndView("redirect:/livro/meus-livros");
         Livro novoLivro = new Livro();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         novoLivro.setAutor(autor);
-        novoLivro.setDataPublicacao(dataPublicacao.toString());
+        novoLivro.setDataPublicacao("01/01/2017");
         novoLivro.setDescricao(descricao);
         novoLivro.setImagem(foto);
         novoLivro.setTitulo(titulo);

@@ -1,6 +1,8 @@
 package com.each.cdl.controller;
 
+import com.each.cdl.integration.AnuncioIntegration;
 import com.each.cdl.integration.UserIntegration;
+import com.each.cdl.integration.responses.AnuncioResponse;
 import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -20,9 +23,19 @@ public class UsuarioController {
     @Autowired
     UserIntegration userIntegration;
 
+    @Autowired
+    AnuncioIntegration anuncioIntegration;
+
+    HttpSession httpSession;
+
     @RequestMapping("meu-cadastro")
-    public String meuCadastro() {
-        return "meu-cadastro";
+    public ModelAndView meuCadastro() {
+        ModelAndView mav = new ModelAndView("meu-cadastro");
+
+        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername("nogueirajuan");
+        mav.addObject("anuncios", anunciosUsername.getAnuncios());
+
+        return mav;
     }
 
     @RequestMapping(value = "cadastrar-usuario", method = RequestMethod.GET)
@@ -38,7 +51,7 @@ public class UsuarioController {
         u.setUsername(username);
         u.setSenha(senha);
 
-        userIntegration.cadastrarUsuario(u);
+        Usuario usuario = userIntegration.cadastrarUsuario(u);
 
         return mav;
     }

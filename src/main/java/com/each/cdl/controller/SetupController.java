@@ -32,7 +32,7 @@ public class SetupController {
 
         Usuario user = userIntegration.findUserByUsername(username);
 
-        session.setAttribute("user", user);
+        session.setAttribute("leitor", user);
 
         return mav;
     }

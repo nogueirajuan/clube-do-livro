@@ -9,34 +9,30 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="well">
-                        <a class="text-left" href="#">
-                            <img th:src="@{../imgs/usuarios/nogueirajuan.jpg}"
-                                 style="width: 100px;"/>
-                        </a>
                         <div class="media-body">
-                            <h4 class="media-heading">Juan Nogueira</h4>
+                            <h4 class="media-heading" th:text="${session.user}"></h4>
                         </div>
                     </div>
-                    <hr />
+                    <hr/>
                 </div>
             </div>
 
             <div class="row">
                 <a href="" class="btn btn-success btn-sm">Ver meus anuncios</a>
 
-                <div class="col-sm-2" th:each="livro : ${livros}">
+                <div class="col-sm-2" th:each="anuncio : ${anuncios}">
                     <article class="col-item">
                         <div class="photo">
-                            <a href="detalhe-livro.html"> <img
-                                    src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png"
-                                    class="img-responsive" alt="Product Image"/> </a>
+                            <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
+                                <img th:src="${anuncio.livro.imagem}"
+                                     class="img-responsive" alt="Product Image"/> </a>
                         </div>
                         <div class="info">
                             <div class="row">
                                 <div class="price-details col-md-12">
-                                    <h1>Laços</h1><br/>
+                                    <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
                                     <div class="details">
-                                        <i class="fa fa-user"></i> Juan Nogueira
+                                        <i class="fa fa-user"></i> <span th:text="${anuncio.anunciante.username}"></span>
                                     </div>
                                     <div class="text-center">
                                         <a href="#" class="btn btn-sm btn-outline-primary"><i

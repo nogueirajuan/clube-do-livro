@@ -20,9 +20,10 @@
 
                     <!-- Precios -->
                     <span class="title-price">
+                        <br/>
                         <b>Resumo do livro:</b><br/>
 						<span th:text="${anuncio.livro.descricao}"></span>
-                        <br/>
+                        <br/><br/>
 					</span>
 
                     <span class="title-price">
@@ -31,14 +32,28 @@
 					</span>
 
                     <!-- Botones de compra -->
-                    <div class="section" style="padding-bottom:20px;">
+                    <div class="section" style="padding-bottom:20px; background: #fff;">
 
                         <div class="row">
-                            <div class="col-md-6 ">
+                            <div class="col-md-4">
                                 <button class="btn btn-success"><span style="margin-right:20px"
                                                                       class="glyphicon glyphicon-shopping-cart"
                                                                       aria-hidden="true"></span> Enviar Mensagem
                                 </button>
+                            </div>
+
+                            <div class="col-md-4">
+                                <a target="_blank" class="btn btn-primary"
+                                   th:href="${'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords=' + anuncio.livro.titulo}">
+                                    Comprar na Amazon
+                                </a>
+                            </div>
+
+                            <div class="col-md-4">
+                                <a target="_blank" class="btn btn-warning"
+                                   th:href="${'https://busca.saraiva.com.br/busca?q=' + anuncio.livro.titulo}">
+                                    Comprar na Saraiva
+                                </a>
                             </div>
                             <!-- <div class="col-md-6 ">
                                 <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar al carro</button>
@@ -121,8 +136,6 @@
                                                 th:text="${anuncio.anunciante.username}"></span>
                                         </div>
                                         <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i
-                                                    class="fa fa-commenting"></i> </a>
                                             <a href="#" class="btn btn-sm btn-outline-info"><i
                                                     class="fa fa-info-circle"></i> Ver</a>
                                         </div>

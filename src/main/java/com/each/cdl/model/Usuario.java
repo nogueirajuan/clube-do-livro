@@ -20,6 +20,13 @@ public class Usuario {
     @JsonProperty("dataNascimento")
     private Date dataNascimento;
 
+    public Usuario(String username) {
+        this.username = username;
+    }
+
+    public Usuario() {
+    }
+
     public String getUsername() {
         return username;
     }

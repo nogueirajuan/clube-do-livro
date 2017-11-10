@@ -83,11 +83,11 @@ public class AnuncioIntegration {
         return result;
     }
 
-    public AnuncioResponse cadastrarAnuncio(Anuncio anuncio) {
+    public void cadastrarAnuncio(String descricao, String idLivro, Anuncio anuncio) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("idLivro", anuncio.getLivro().getIsbn());
-        map.put("anunciante", anuncio.getAnunciante().getUsername());
-        map.put("descricao", anuncio.getDescricao());
+        map.put("livroID", idLivro);
+        map.put("anunciante", "nogueirajuan");
+        map.put("descricao", descricao);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -96,9 +96,7 @@ public class AnuncioIntegration {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        AnuncioResponse result = restTemplate.postForObject(url, anuncio, AnuncioResponse.class, map);
-
-        return result;
+        restTemplate.postForObject(url, anuncio, AnuncioResponse.class, map);
     }
 
 }

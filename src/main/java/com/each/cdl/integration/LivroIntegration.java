@@ -56,7 +56,6 @@ public class LivroIntegration {
 
     public Livro cadastrarLivro(Livro livro){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         HashMap<String, String> map = new HashMap<>();
         map.put("autor", livro.getAutor());
@@ -64,7 +63,7 @@ public class LivroIntegration {
         map.put("imagem", livro.getImagem());
         map.put("isbn", livro.getIsbn());
         map.put("titulo", livro.getTitulo());
-        map.put("dataPublicacao", sdf.format(livro.getDataPublicacao()));
+        map.put("dataPublicacao", livro.getDataPublicacao());
 
         String url = properties.getBookshareServer() + properties.getLivrosPrefix() + properties.getLivrosCadastrar();
 
