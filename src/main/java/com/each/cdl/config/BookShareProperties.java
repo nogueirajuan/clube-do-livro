@@ -38,6 +38,46 @@ public class BookShareProperties {
     private String usuariosCadastrar;
 
     /* chat */
+    @Value("${bookshare-server.chat.prefix}")
+    private String chatPrefix;
+    @Value("${bookshare-server.chat.enviar}")
+    private String chatEnviarMensagem;
+    @Value("${bookshare-server.chat.mensagens}")
+    private String chatGetMensagens;
+    @Value("${bookshare-server.chat.destinatarios}")
+    private String chatGetDestinatarios;
+
+    public void setChatPrefix(String chatPrefix) {
+        this.chatPrefix = chatPrefix;
+    }
+
+    public void setChatEnviarMensagem(String chatEnviarMensagem) {
+        this.chatEnviarMensagem = chatEnviarMensagem;
+    }
+
+    public void setChatGetMensagens(String chatGetMensagens) {
+        this.chatGetMensagens = chatGetMensagens;
+    }
+
+    public void setChatGetDestinatarios(String chatGetDestinatarios) {
+        this.chatGetDestinatarios = chatGetDestinatarios;
+    }
+
+    public String getChatPrefix() {
+        return chatPrefix;
+    }
+
+    public String getChatEnviarMensagem() {
+        return chatEnviarMensagem;
+    }
+
+    public String getChatGetMensagens() {
+        return chatGetMensagens;
+    }
+
+    public String getChatGetDestinatarios() {
+        return chatGetDestinatarios;
+    }
 
     public String getBookshareServer() {
         return bookshareServer;

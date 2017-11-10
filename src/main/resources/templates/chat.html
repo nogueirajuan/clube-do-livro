@@ -1,0 +1,50 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+     layout:decorator="masterpages/page">
+    <div layout:fragment="content">
+        <div class="container content">
+            <div class="clearfix">
+
+                <div class="chat">
+                    <div class="chat-history">
+                        <ul class="chat-ul">
+                            <li>
+                                <div class="message-data">
+                                    <span class="message-data-name"><i class="fa fa-circle you"></i> Luiz Rosti</span>
+                                </div>
+                                <div class="message you-message">
+                                    Olá Juan
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="message-data align-right">
+                                    <span class="message-data-name">Juan Nogueira</span> <i class="fa fa-circle me"></i>
+                                </div>
+                                <div class="message me-message float-right">Eae Rosti</div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-name"><i class="fa fa-circle you"></i> Luiz Rosti</span>
+                                </div>
+                                <div class="message you-message">Você já leu Harry Potter?</div>
+                            </li>
+
+                            <div class="form-horizontal">
+                                <hr/>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input id="inputParaMsg" type="text" class="form-control"
+                                               placeholder="Insira sua mensagem aqui"/>
+                                        <span class="input-group-btn">
+										<button th:action="" id="btnEnviarMsg" class="btn btn-secondary" type="button">Enviar</button>
+									</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div> <!-- end chat-history -->
+
+                </div> <!-- end chat -->
+            </div>
+        </div>
+    </div>
+</div>

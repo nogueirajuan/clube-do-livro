@@ -86,6 +86,13 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+
+
         <!--Security dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
