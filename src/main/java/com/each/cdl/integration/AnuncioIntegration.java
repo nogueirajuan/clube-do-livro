@@ -85,7 +85,7 @@ public class AnuncioIntegration {
 
     public AnuncioResponse cadastrarAnuncio(Anuncio anuncio) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("livroID", anuncio.getLivro().getIsbn());
+        map.put("idLivro", anuncio.getLivro().getIsbn());
         map.put("anunciante", anuncio.getAnunciante().getUsername());
         map.put("descricao", anuncio.getDescricao());
 
