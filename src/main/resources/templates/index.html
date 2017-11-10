@@ -12,9 +12,50 @@
             <div class="col-sm-2" th:each="anuncio : ${anuncios}">
                 <article class="col-item">
                     <div class="photo">
-                        <a th:href="@{livro/detalhe-livro(id=${anuncio.id})}">
-                            <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png"
-                                class="img-responsive" alt="Product Image"/> </a>
+                        <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
+                            <img th:src="${anuncio.livro.imagem}"
+                                 class="img-responsive" alt="Product Image"/> </a>
+                    </div>
+                    <div class="info">
+                        <div class="row">
+                            <div class="price-details col-md-12">
+                                <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
+                                <div class="details">
+                                    <i class="fa fa-user"></i> <span th:text="${anuncio.anunciante.username}"></span>
+                                </div>
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-sm btn-outline-primary"><i
+                                            class="fa fa-commenting"></i> </a>
+                                    <a href="#" class="btn btn-sm btn-outline-info"><i
+                                            class="fa fa-info-circle"></i> Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <hr/>
+        <div class="text-center">
+            <a href="#" class="btn btn-sm btn-outline-success">Ver Mais</a>
+        </div>
+
+
+        <!-- conteudo -->
+        <h4>Mais Avaliados</h4>
+        <hr/>
+
+        <div class="row">
+
+            <div class="col-sm-2" th:each="anuncio : ${anuncios}">
+                <article class="col-item">
+                    <div class="photo">
+                        <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
+                            <img th:src="${anuncio.livro.imagem}"
+                                 class="img-responsive" alt="Product Image"/> </a>
                     </div>
                     <div class="info">
                         <div class="row">

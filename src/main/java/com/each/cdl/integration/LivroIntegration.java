@@ -10,6 +10,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,6 +52,38 @@ public class LivroIntegration {
         LivroResponse result = restTemplate.getForObject(url, LivroResponse.class, map);
 
         return result.getLivro();
+    }
+
+    public Livro cadastrarLivro(Livro livro){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("autor", livro.getAutor());
+        map.put("descricao", livro.getDescricao());
+        map.put("imagem", livro.getImagem());
+        map.put("isbn", livro.getIsbn());
+        map.put("titulo", livro.getTitulo());
+        map.put("dataPublicacao", sdf.format(livro.getDataPublicacao()));
+
+        String url = properties.getBookshareServer() + properties.getLivrosPrefix() + properties.getLivrosCadastrar();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        LivroResponse result = restTemplate.postForObject(url, livro, LivroResponse.class, map);
+
+        return result.getLivro();
+    }
+
+    public List<Livro> findAll(){
+
+        String url = properties.getBookshareServer() + properties.getLivrosPrefix() + "findAll";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        LivroResponse result = restTemplate.getForObject(url, LivroResponse.class);
+
+        return result.getLivros();
     }
 
 }

@@ -20,12 +20,21 @@ public class BookShareProperties {
     @Value("${bookshare-server.anuncios.find-by-id}")
     private String anunciosFindById;
 
+    @Value("${bookshare-server.anuncios.find-by-username}")
+    private String anunciosFindByUsername;
+
+    @Value("${bookshare-server.anuncios.create}")
+    private String anunciosCadastrar;
+
     /* Livros */
     @Value("${bookshare-server.livros.prefix}")
     private String livrosPrefix;
 
     @Value("${bookshare-server.livros.find-by-id}")
     private String livrosFindById;
+
+    @Value("${bookshare-server.livros.cadastrar}")
+    private String livrosCadastrar;
 
     /* Usuarios */
     @Value("${bookshare-server.usuarios.prefix}")
@@ -171,5 +180,29 @@ public class BookShareProperties {
 
     public void setUsuariosFindByUsername(String usuariosFindByUsername) {
         this.usuariosFindByUsername = usuariosFindByUsername;
+    }
+
+    public String getLivrosCadastrar() {
+        return livrosCadastrar;
+    }
+
+    public void setLivrosCadastrar(String livrosCadastrar) {
+        this.livrosCadastrar = livrosCadastrar;
+    }
+
+    public String getAnunciosFindByUsername() {
+        return anunciosFindByUsername;
+    }
+
+    public void setAnunciosFindByUsername(String anunciosFindByUsername) {
+        this.anunciosFindByUsername = anunciosFindByUsername;
+    }
+
+    public String getAnunciosCadastrar() {
+        return anunciosCadastrar;
+    }
+
+    public void setAnunciosCadastrar(String anunciosCadastrar) {
+        this.anunciosCadastrar = anunciosCadastrar;
     }
 }

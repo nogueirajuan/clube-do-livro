@@ -24,7 +24,7 @@ public class SetupController {
     @RequestMapping("/init")
     public ModelAndView init(HttpSession session, RedirectAttributes ra){
 
-        ModelAndView mav = new ModelAndView("/");
+        ModelAndView mav = new ModelAndView("redirect:/");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 

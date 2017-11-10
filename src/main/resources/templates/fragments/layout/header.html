@@ -60,7 +60,7 @@
 
         <div class="header-search">
             <form th:action="@{/livro/busca}" class="container">
-                <input type="text" class="form-control" placeholder="Busque o livro desejado" th:value="(${param.nome != null}) ? ${param.nome[0]} : ''"  />
+                <input type="text" name="nome" class="form-control" placeholder="Busque o livro desejado" th:value="(${param.nome != null}) ? ${param.nome[0]} : ''"  />
             </form>
         </div>
 

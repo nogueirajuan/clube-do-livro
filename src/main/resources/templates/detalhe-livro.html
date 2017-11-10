@@ -6,23 +6,28 @@
         <!-- conteudo -->
 
         <h4>Detalhes</h4>
-        <hr />
+        <hr/>
 
         <div class="container">
             <div class="row">
                 <div class="col-md-4 item-photo">
-                    <img style="max-width:100%;" src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" />
+                    <img style="max-width:100%;" th:src="${anuncio.livro.imagem}"/>
                 </div>
                 <div class="col-md-8" style="border:0px solid gray">
                     <!-- Datos del vendedor y titulo del producto -->
-                    <h3>Como andar de moto 2</h3>
-                    <h5 style="color:#337ab7;">anunciado por <a href="#" ></a></h5>
+                    <h3 th:text="${anuncio.livro.titulo}"></h3>
+                    <h5 style="color:#337ab7;">anunciado por <a href="#" th:text="${anuncio.anunciante.nome}"></a></h5>
 
                     <!-- Precios -->
                     <span class="title-price">
-						Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go.
+                        <b>Resumo do livro:</b><br/>
+						<span th:text="${anuncio.livro.descricao}"></span>
+                        <br/>
+					</span>
 
-						With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
+                    <span class="title-price">
+                        <b>Descrição do anunciante:</b><br/>
+						<span th:text="${anuncio.descricao}"></span>
 					</span>
 
                     <!-- Botones de compra -->
@@ -30,7 +35,10 @@
 
                         <div class="row">
                             <div class="col-md-6 ">
-                                <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Enviar Mensagem</button>
+                                <button class="btn btn-success"><span style="margin-right:20px"
+                                                                      class="glyphicon glyphicon-shopping-cart"
+                                                                      aria-hidden="true"></span> Enviar Mensagem
+                                </button>
                             </div>
                             <!-- <div class="col-md-6 ">
                                 <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar al carro</button>
@@ -40,16 +48,17 @@
                 </div>
 
                 <div class="col-md-12">
-                    <br />
+                    <br/>
                     <h4>Avaliações</h4>
-                    <hr />
+                    <hr/>
 
                     <div>
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-xs-2 col-md-1">
-                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt=""/>
+                                    </div>
                                     <div class="col-xs-10 col-md-11">
                                         <div>
                                             <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
@@ -69,31 +78,53 @@
                     </div>
                 </div>
 
+                <div class="col-md-12">
+                    <br/>
+                    <h4>Escreva uma avaliação sobre este livro</h4>
+
+                    <form class="form-horizontal" th:action="@{avaliacao/create}" method="post">
+                        <div class="form-group">
+                            <label class="control-label">Avaliação:</label>
+                            <textarea class="form-control" required="required"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-sm btn-success">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
-            <hr />
+            <hr/>
             <div>
 
                 <h4>Recomendamos pra você</h4>
-                <hr />
+                <hr/>
 
                 <div class="row">
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" th:each="anuncio : ${anuncios}">
                         <article class="col-item">
                             <div class="photo">
-                                <a href="detalhe-livro.html"> <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" class="img-responsive" alt="Product Image" /> </a>
+                                <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
+                                    <img th:src="${anuncio.livro.imagem}"
+                                         class="img-responsive" alt="Product Image"/> </a>
                             </div>
                             <div class="info">
                                 <div class="row">
                                     <div class="price-details col-md-12">
-                                        <h1>Laços</h1><br />
+                                        <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
                                         <div class="details">
-                                            <i class="fa fa-user"></i> nogueirajuan
+                                            <i class="fa fa-user"></i> <span
+                                                th:text="${anuncio.anunciante.username}"></span>
                                         </div>
                                         <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fa fa-commenting"></i> </a>
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-info-circle"></i> Ver</a>
+                                            <a href="#" class="btn btn-sm btn-outline-primary"><i
+                                                    class="fa fa-commenting"></i> </a>
+                                            <a href="#" class="btn btn-sm btn-outline-info"><i
+                                                    class="fa fa-info-circle"></i> Ver</a>
                                         </div>
                                     </div>
                                 </div>
@@ -101,120 +132,9 @@
                         </article>
                     </div>
 
-                    <div class="col-sm-2">
-                        <article class="col-item">
-                            <div class="photo">
-                                <a href="detalhe-livro.html"> <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" class="img-responsive" alt="Product Image" /> </a>
-                            </div>
-                            <div class="info">
-                                <div class="row">
-                                    <div class="price-details col-md-12">
-                                        <h1>Laços</h1><br />
-                                        <div class="details">
-                                            <i class="fa fa-user"></i> Juan Nogueira
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fa fa-commenting"></i> </a>
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-info-circle"></i> Ver</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <article class="col-item">
-                            <div class="photo">
-                                <a href="detalhe-livro.html"> <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" class="img-responsive" alt="Product Image" /> </a>
-                            </div>
-                            <div class="info">
-                                <div class="row">
-                                    <div class="price-details col-md-12">
-                                        <h1>Laços</h1><br />
-                                        <div class="details">
-                                            <i class="fa fa-user"></i> Juan Nogueira
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fa fa-commenting"></i> </a>
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-info-circle"></i> Ver</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <article class="col-item">
-                            <div class="photo">
-                                <a href="detalhe-livro.html"> <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" class="img-responsive" alt="Product Image" /> </a>
-                            </div>
-                            <div class="info">
-                                <div class="row">
-                                    <div class="price-details col-md-12">
-                                        <h1>Laços</h1><br />
-                                        <div class="details">
-                                            <i class="fa fa-user"></i> Juan Nogueira
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fa fa-commenting"></i> </a>
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-info-circle"></i> Ver</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <article class="col-item">
-                            <div class="photo">
-                                <a href="detalhe-livro.html"> <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" class="img-responsive" alt="Product Image" /> </a>
-                            </div>
-                            <div class="info">
-                                <div class="row">
-                                    <div class="price-details col-md-12">
-                                        <h1>Laços</h1><br />
-                                        <div class="details">
-                                            <i class="fa fa-user"></i> Juan Nogueira
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fa fa-commenting"></i> </a>
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-info-circle"></i> Ver</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <article class="col-item">
-                            <div class="photo">
-                                <a href="detalhe-livro.html"> <img src="https://images-na.ssl-images-amazon.com/images/G/32/br-books/2017/september/indicacoes/reviews/lacos._V517633430_.png" class="img-responsive" alt="Product Image" /> </a>
-                            </div>
-                            <div class="info">
-                                <div class="row">
-                                    <div class="price-details col-md-12">
-                                        <h1>Laços</h1><br />
-                                        <div class="details">
-                                            <i class="fa fa-user"></i> Juan Nogueira
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fa fa-commenting"></i> </a>
-                                            <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-info-circle"></i> Ver</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-
-                    </div>
                 </div>
 
-                <hr />
+                <hr/>
                 <div class="text-center">
                     <a href="#" class="btn btn-sm btn-outline-success">Ver Mais</a>
                 </div>

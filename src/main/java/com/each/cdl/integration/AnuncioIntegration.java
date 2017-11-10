@@ -67,4 +67,38 @@ public class AnuncioIntegration {
         return result;
     }
 
+    public AnuncioResponse buscaAnuncioPorUsername(String username) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username", username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindByUsername();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        AnuncioResponse result = restTemplate.getForObject(url, AnuncioResponse.class, map);
+
+        return result;
+    }
+
+    public AnuncioResponse cadastrarAnuncio(Anuncio anuncio) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("livroID", anuncio.getLivro().getIsbn());
+        map.put("anunciante", anuncio.getAnunciante().getUsername());
+        map.put("descricao", anuncio.getDescricao());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosCadastrar();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        AnuncioResponse result = restTemplate.postForObject(url, anuncio, AnuncioResponse.class, map);
+
+        return result;
+    }
+
 }

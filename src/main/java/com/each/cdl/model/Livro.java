@@ -22,6 +22,13 @@ public class Livro {
     @JsonProperty("dataPublicacao")
     private String dataPublicacao;
 
+    public Livro() {
+    }
+
+    public Livro(String isbn) {
+        this.isbn = isbn;
+    }
+
     public String getIsbn() {
         return isbn;
     }

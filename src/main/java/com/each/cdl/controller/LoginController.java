@@ -30,7 +30,7 @@ public class LoginController {
         if (session != null
                 && session.getAttribute("user") != null
                 && !session.getAttribute("user").toString().isEmpty()) {
-            return "redirect:/mensagem/mensagens";
+            return "redirect:/";
         }
 
         return "login/loginForm";
