@@ -24,32 +24,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        http.sessionManagement()
-//                .sessionFixation()
-//                .migrateSession()
-//                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-//                .maximumSessions(1)
-//                .expiredUrl("/");
-////
-//        http.authorizeRequests()
-//                .antMatchers("/css/**").permitAll()
-//                .antMatchers("/images/**").permitAll()
-//                .antMatchers("/js/**").permitAll()
-//                .antMatchers("/static/**").permitAll()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/livro/meus-livros").authenticated()
-//                .antMatchers("/mensagem/mensagens").authenticated()
-//                .antMatchers("/usuario/meu-cadastro").authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login").successForwardUrl("/")
-//                .and()
-//                .logout()
-//                .logoutUrl("/login?logout")
-//                .deleteCookies("remove")
-//                .invalidateHttpSession(true)
-//                .permitAll();
+        http.sessionManagement()
+                .sessionFixation()
+                .migrateSession()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .maximumSessions(1)
+                .expiredUrl("/");
 //
+        http.authorizeRequests()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/static/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/setup/init").authenticated()
+                .antMatchers("/livro/meus-livros").authenticated()
+                .antMatchers("/mensagem/mensagens").authenticated()
+                .antMatchers("/usuario/meu-cadastro").authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login").successForwardUrl("/setup/init")
+                .and()
+                .logout()
+                .logoutUrl("/login?logout")
+                .deleteCookies("remove")
+                .invalidateHttpSession(true)
+                .permitAll();
+
         http.csrf().disable();
     }
 }

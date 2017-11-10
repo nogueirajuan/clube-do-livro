@@ -6,8 +6,10 @@ import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 @Component
@@ -33,7 +35,7 @@ public class UserIntegration {
                 classType);
     }
 
-    public LoginResponse login(Usuario u){
+    public LoginResponse login(Usuario u) {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("username", u.getUsername());
@@ -45,24 +47,52 @@ public class UserIntegration {
         LoginResponse result = rt.postForObject(url, u, LoginResponse.class, map);
 
         return result;
-
     }
 
-    public void cadastrarUsuario(Usuario u) {
+    public Usuario cadastrarUsuario(Usuario u) {
         HashMap<String, String> map = new HashMap<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        map.put("dataNascimento", sdf.format(u.getDataNascimento()));
+        map.put("email", u.getEmail());
+        map.put("nome", u.getNome());
+        map.put("sobrenome", u.getSobrenome());
         map.put("username", u.getUsername());
         map.put("senha", u.getSenha());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
         String url = properties.getBookshareServer() + properties.getUsuariosPrefix() + properties.getUsuariosCadastrar();
 
+        Usuario newUser = new Usuario();
         RestTemplate restTemplate = new RestTemplate();
 
-        HttpEntity<String> entity = new HttpEntity<String>(u.toString(), headers);
-        String answer = restTemplate.postForObject(url, entity, String.class);
-        System.out.println(answer);
+        try {
+            newUser = restTemplate.postForObject(url, u, Usuario.class, map);
+
+        } catch (HttpClientErrorException ex) {
+            return null;
+        }
+
+        return newUser;
+    }
+
+    public Usuario findUserByUsername(String username) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username", username);
+
+        String url = properties.getBookshareServer() + properties.getUsuariosPrefix() + properties.getUsuariosFindByUsername();
+
+        Usuario newUser = new Usuario();
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            newUser = restTemplate.getForObject(url, Usuario.class, map);
+
+        } catch (HttpClientErrorException ex) {
+            return null;
+        }
+
+        return newUser;
     }
 
 }

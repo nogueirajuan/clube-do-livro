@@ -37,6 +37,12 @@ public class BookShareProperties {
     @Value("${bookshare-server.usuarios.cadastrar}")
     private String usuariosCadastrar;
 
+    @Value("${bookshare-server.usuarios.find-by-id}")
+    private String usuariosFindById;
+
+    @Value("${bookshare-server.usuarios.find-by-username}")
+    private String usuariosFindByUsername;
+
     /* chat */
     @Value("${bookshare-server.chat.prefix}")
     private String chatPrefix;
@@ -149,5 +155,21 @@ public class BookShareProperties {
 
     public void setUsuariosCadastrar(String usuariosCadastrar) {
         this.usuariosCadastrar = usuariosCadastrar;
+    }
+
+    public String getUsuariosFindById() {
+        return usuariosFindById;
+    }
+
+    public void setUsuariosFindById(String usuariosFindById) {
+        this.usuariosFindById = usuariosFindById;
+    }
+
+    public String getUsuariosFindByUsername() {
+        return usuariosFindByUsername;
+    }
+
+    public void setUsuariosFindByUsername(String usuariosFindByUsername) {
+        this.usuariosFindByUsername = usuariosFindByUsername;
     }
 }

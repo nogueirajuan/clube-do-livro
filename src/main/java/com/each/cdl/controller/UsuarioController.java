@@ -36,6 +36,7 @@ public class UsuarioController {
         u.setNome(nome);
         u.setSobrenome(sobrenome);
         u.setUsername(username);
+        u.setSenha(senha);
 
         userIntegration.cadastrarUsuario(u);
 

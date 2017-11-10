@@ -17,9 +17,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author victorluni
@@ -32,12 +36,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private static final Logger log = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
     @Autowired
-    Environment env;
-
-    @Autowired
     UserIntegration userIntegration;
-
-    HttpSession httpSession;
 
     @Override
     public Authentication authenticate(Authentication a) throws AuthenticationException {
@@ -51,13 +50,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("invalid login or password");
         }
 
-
-
         LoginResponse login = userIntegration.login(u);
 
         if (login.getSucesso()) {
-            httpSession.setAttribute("username", "logado");
-            return new UsernamePasswordAuthenticationToken(u.getUsername(), u.getSenha());
+
+            List<GrantedAuthority> granted = new ArrayList<>();
+
+            granted.add(new SimpleGrantedAuthority("leitor"));
+            return new UsernamePasswordAuthenticationToken(u.getUsername(), a.getCredentials().toString(), granted);
         }else{
             log.error(LOG_PREFIX + "[MESSAGE]-[{}]", "User not found");
             throw new BadCredentialsException("User not found");

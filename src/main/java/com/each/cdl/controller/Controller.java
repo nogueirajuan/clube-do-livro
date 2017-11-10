@@ -36,9 +36,4 @@ public class Controller {
         mav.addObject("anuncios", anuncios);
         return mav;
     }
-
-    @RequestMapping("/login")
-    public String login(){
-        return "login/loginForm";
-    }
 }
