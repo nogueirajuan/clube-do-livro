@@ -12,7 +12,7 @@
             <form th:action="@{/anuncio/cadastrar-anuncio-request}" enctype="multipart/form-data" method="post" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label">Livro:</label>
-                    <select name="livro" class="form-control">
+                    <select name="idLivro" class="form-control">
                         <option>-- Selecione --</option>
                         <optgroup>
                             <option th:each="l : ${livros}" th:text="${l.titulo}" th:value="${l.isbn}"></option>
