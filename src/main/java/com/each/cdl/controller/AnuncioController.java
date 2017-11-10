@@ -12,6 +12,7 @@ public class AnuncioController {
     @RequestMapping("busca")
     public ModelAndView buscaAnuncio(@RequestParam String nome){
         return new ModelAndView("busca");
+        
     }
 
 }
