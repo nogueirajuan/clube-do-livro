@@ -4,47 +4,34 @@
         <div class="container content">
             <div class="clearfix">
 
-                <div class="chat">
+                <div class="chat" style="height: 800px">
                     <div class="chat-history">
-                        <ul class="chat-ul">
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle you"></i> Luiz Rosti</span>
-                                </div>
-                                <div class="message you-message">
-                                    Olá Juan
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data align-right">
-                                    <span class="message-data-name">Juan Nogueira</span> <i class="fa fa-circle me"></i>
-                                </div>
-                                <div class="message me-message float-right">Eae Rosti</div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle you"></i> Luiz Rosti</span>
-                                </div>
-                                <div class="message you-message">Você já leu Harry Potter?</div>
-                            </li>
-
-                            <div class="form-horizontal">
-                                <hr/>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input id="inputParaMsg" type="text" class="form-control"
-                                               placeholder="Insira sua mensagem aqui"/>
-                                        <span class="input-group-btn">
-										<button id="btnEnviarMsg" class="btn btn-secondary" type="button">Enviar</button>
+                        <div id="scrolldiv" style="height: 600px; overflow: auto;">
+                            <ul id="chat-ul" class="chat-ul">
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div class="form-horizontal" style="width: 100%">
+                            <hr/>
+                            <div class="form-group" style="width: 100%">
+                                <form name="novaMensagem" style="width: 100%">
+                                <div class="input-group" style="width: 100%">
+                                    <span class="input-group-btn" style="width: 100%">
 									</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </ul>
-                    </div> <!-- end chat-history -->
 
+                                        <input type="hidden" value="nicolas" id="sender" />
+                                        <input type="hidden" value="juan" id="receiver" />
+                                        <input id="inputMensagem" name="inputMensagem" type="text" class="form-control"
+                                               style="width: 90%;" placeholder="Insira sua mensagem aqui"/>
+                                        <button id="btnEnviarMensagem" name="btnEnviarMensagem" style="position: inherit" class="btn btn-secondary" type="button">Enviar</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end chat-history -->
                 </div> <!-- end chat -->
             </div>
         </div>
     </div>
 </div>
+
