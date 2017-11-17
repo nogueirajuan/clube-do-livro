@@ -18,9 +18,9 @@
                 <div class="info">
                     <div class="row">
                         <div class="price-details col-md-12">
-                            <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
-                            <div class="details">
-                                <i class="fa fa-user"></i> <span th:text="${anuncio.anunciante.username}"></span>
+                            <a style="color: #7e4f2f;" th:href="@{/livro/detalhe-livro(id=${anuncio.id})}"><h1 th:text="${anuncio.livro.titulo}"></h1></a><br/>
+                            <div class="details" style="margin-top:">
+                                <span th:text="${anuncio.anunciante.username}"></span>
                             </div>
                         </div>
                     </div>
