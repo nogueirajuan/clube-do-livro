@@ -32,9 +32,10 @@ var moduloDOM = (function () {
 })();
 
 var moduloAjax = (function () {
-    var endpoint = 'http://localhost:9999';
+    // var endpoint = 'http://localhost:9999';
+    var endpoint = 'https://rp2-bookshare-backend.herokuapp.com';
     var urlEnviarMensagem = '/enviar-mensagem';
-    var urlGetMensagens = '/get-mensagens?sender=nicolas&receiver=juan';
+    var urlGetMensagens = '/get-mensagens?sender=nicolasmoura&receiver=nogueirajuan';
 
     function getMensagens(callback) {
         $.get(endpoint + urlGetMensagens, callback);
@@ -66,7 +67,7 @@ var moduloAjax = (function () {
 })();
 
 var moduloApp = (function () {
-    var username = 'nicolas';
+    var username = 'nicolasmoura';
 
     function verifyNewMessages(mensagens) {
         for (mensagem in mensagens) {
