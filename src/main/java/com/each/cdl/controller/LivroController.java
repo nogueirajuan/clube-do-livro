@@ -1,5 +1,6 @@
 package com.each.cdl.controller;
 
+import com.each.cdl.config.Constants;
 import com.each.cdl.integration.*;
 import com.each.cdl.integration.responses.AnuncioResponse;
 import com.each.cdl.model.*;
@@ -45,12 +46,14 @@ public class LivroController {
     @Autowired
     AvaliacaoIntegration avaliacaoIntegration;
 
+    @Autowired
+    HttpSession httpSession;
 
     @RequestMapping("meus-livros")
     public ModelAndView meusLivros() {
         ModelAndView mav = new ModelAndView("meus-livros");
 
-        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername("nogueirajuan");
+        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername(((Usuario)httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername());
         mav.addObject("anuncios", anunciosUsername.getAnuncios());
 
         return mav;
