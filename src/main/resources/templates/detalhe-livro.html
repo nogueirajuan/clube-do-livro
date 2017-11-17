@@ -43,7 +43,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <a class="btn btn-primary" th:if="${session.LEITOR == null}"
+                                <a class="btn btn-primary" th:if="${session.LEITOR != null}"
                                    th:href="${'/mensagem/chat?user=' + anuncio.anunciante.username}">
                                     <span style="margin-right: 20px;" class="fa fa-comment-o"></span> Enviar Mensagem
                                 </a>
