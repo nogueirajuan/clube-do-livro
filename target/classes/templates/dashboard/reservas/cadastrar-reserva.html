@@ -1,0 +1,68 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="masterpages/pagedashboard">
+
+
+    <div layout:fragment="precontent">
+        <ol class="breadcrumb text-right">
+            <li><a th:href="@{/dashboard/}">Home</a></li>
+            <li><a th:href="@{/dashboard/reservas}">Reservas</a></li>
+            <li class="active">Cadastrar reserva</li>
+        </ol>
+    </div>
+
+    <div layout:fragment="content">
+        <br />
+        <div class="container">
+            <h1>Reservas</h1>
+            <hr />
+            <div class="form-horizontal text-right">
+
+                <form th:action="@{/dashboard/reservas}" metehod="get">
+                    <div class="form-group">
+                        <div class="input-group">
+
+                            <input type="text" name="search" class="form-control" placeholder="Busque sua reserva" />
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-deafult">Buscar</button>
+                                <a th:href="@{/dashboard/cadastrar-reserva}" class="btn btn-success">Cadastrar reserva</a>
+                            </span>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>Instituto</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="" /></td>
+                        <td>DASI USP</td>
+                        <td>Instituto</td>
+                        <td class="text-right">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <a href="" class="btn btn-1d btn-info"><span class=""></span> detalhes</a>
+                                </div>
+                                <div class="form-group">
+                                    <a href="" class="btn btn-1d btn-info"><span class=""></span> Editar</a>
+                                </div>
+                                <div class="form-group">
+                                    <a href="" class="btn btn-1d btn-danger"><span class=""></span> Remover</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+
+
+</div>

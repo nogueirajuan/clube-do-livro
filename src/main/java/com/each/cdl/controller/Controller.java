@@ -15,8 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
- *
  * @author juan_
  */
 @org.springframework.stereotype.Controller
@@ -27,10 +28,15 @@ public class Controller {
     @Autowired
     AnuncioIntegration anuncioIntegration;
 
+    @Autowired
+    HttpSession httpSession;
+
     @RequestMapping("/")
     public ModelAndView home() {
         ModelAndView mav = new ModelAndView("index");
         log.log(Level.INFO, "[CHAIN RESERVAS]-[PAGE REQUEST]-[INDEX]");
+
+        httpSession.setAttribute("teste", "piroca");
 
         List<Anuncio> anuncios = anuncioIntegration.buscaAnuncios();
         mav.addObject("anuncios", anuncios);

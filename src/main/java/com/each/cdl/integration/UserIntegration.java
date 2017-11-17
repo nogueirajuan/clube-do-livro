@@ -2,6 +2,7 @@ package com.each.cdl.integration;
 
 import com.each.cdl.config.BookShareProperties;
 import com.each.cdl.integration.responses.LoginResponse;
+import com.each.cdl.integration.responses.UsuarioResponse;
 import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -82,17 +83,17 @@ public class UserIntegration {
 
         String url = properties.getBookshareServer() + properties.getUsuariosPrefix() + properties.getUsuariosFindByUsername();
 
-        Usuario newUser = new Usuario();
+        UsuarioResponse newUser = new UsuarioResponse();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            newUser = restTemplate.getForObject(url, Usuario.class, map);
+            newUser = restTemplate.postForObject(url, username, UsuarioResponse.class, map);
 
         } catch (HttpClientErrorException ex) {
             return null;
         }
 
-        return newUser;
+        return newUser.getUsuario();
     }
 
 }

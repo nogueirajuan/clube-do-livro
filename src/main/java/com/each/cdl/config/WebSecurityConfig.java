@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").successForwardUrl("/setup/init")
                 .and()
                 .logout()
-                .logoutUrl("/login?logout")
+                .logoutUrl("/logout")
                 .deleteCookies("remove")
                 .invalidateHttpSession(true)
                 .permitAll();

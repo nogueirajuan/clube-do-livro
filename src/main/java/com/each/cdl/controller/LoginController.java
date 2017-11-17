@@ -1,5 +1,6 @@
 package com.each.cdl.controller;
 
+import com.each.cdl.config.Constants;
 import com.each.cdl.integration.UserIntegration;
 import com.each.cdl.integration.responses.LoginResponse;
 import com.each.cdl.model.Usuario;
@@ -28,8 +29,8 @@ public class LoginController {
         log.debug("usuário logado: " + session.getAttribute("user"));
 
         if (session != null
-                && session.getAttribute("leitor") != null
-                && !session.getAttribute("leitor").toString().isEmpty()) {
+                && session.getAttribute(Constants.HTTP_SESSION_LEITOR) != null
+                && !session.getAttribute(Constants.HTTP_SESSION_LEITOR).toString().isEmpty()) {
             return "redirect:/";
         }
 

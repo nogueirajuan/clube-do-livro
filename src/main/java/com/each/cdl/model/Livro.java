@@ -21,6 +21,8 @@ public class Livro {
     private String descricao;
     @JsonProperty("dataPublicacao")
     private String dataPublicacao;
+    @JsonProperty("categoria")
+    private Categoria categoria;
 
     public Livro() {
     }
@@ -75,5 +77,13 @@ public class Livro {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

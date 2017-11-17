@@ -1,0 +1,160 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+     layout:decorator="masterpages/page">
+
+
+    <div layout:fragment="content">
+        <!-- conteudo -->
+
+        <h4>Detalhes</h4>
+        <hr/>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 item-photo">
+                    <img style="max-width:100%;" th:src="${anuncio.livro.imagem}"/>
+                </div>
+                <div class="col-md-8" style="border:0px solid gray">
+                    <!-- Datos del vendedor y titulo del producto -->
+                    <h3 th:text="${anuncio.livro.titulo}"></h3>
+                    <h5 style="color:#337ab7;">anunciado por <a href="#" th:text="${anuncio.anunciante.nome}"></a></h5>
+
+                    <!-- Precios -->
+                    <span class="title-price">
+                        <br/>
+                        <b>Resumo do livro:</b><br/>
+						<span th:text="${anuncio.livro.descricao}"></span>
+                        <br/><br/>
+					</span>
+
+                    <span class="title-price">
+                        <b>Descrição do anunciante:</b><br/>
+						<span th:text="${anuncio.descricao}"></span>
+					</span>
+
+                    <!-- Botones de compra -->
+                    <div class="section" style="padding-bottom:20px; background: #fff;">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-success"><span style="margin-right:20px"
+                                                                      class="glyphicon glyphicon-shopping-cart"
+                                                                      aria-hidden="true"></span> Enviar Mensagem
+                                </button>
+                            </div>
+
+                            <div class="col-md-4">
+                                <a target="_blank" class="btn btn-primary"
+                                   th:href="${'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords=' + anuncio.livro.titulo}">
+                                    Comprar na Amazon
+                                </a>
+                            </div>
+
+                            <div class="col-md-4">
+                                <a target="_blank" class="btn btn-warning"
+                                   th:href="${'https://busca.saraiva.com.br/busca?q=' + anuncio.livro.titulo}">
+                                    Comprar na Saraiva
+                                </a>
+                            </div>
+                            <!-- <div class="col-md-6 ">
+                                <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar al carro</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <br/>
+                    <h4>Avaliações</h4>
+                    <hr/>
+
+                    <div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-1">
+                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt=""/>
+                                    </div>
+                                    <div class="col-xs-10 col-md-11">
+                                        <div>
+                                            <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
+                                                Juan Nogueira
+                                            </a>
+                                            <div class="mic-info">
+                                                em: 29/09/2017 04:28
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            Um ótimo livro! Recomendo muito a leitura!
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <br/>
+                    <h4>Escreva uma avaliação sobre este livro</h4>
+
+                    <form class="form-horizontal" th:action="@{avaliacao/create}" method="post">
+                        <div class="form-group">
+                            <label class="control-label">Avaliação:</label>
+                            <textarea class="form-control" required="required"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-sm btn-success">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <hr/>
+            <div>
+
+                <h4>Recomendamos pra você</h4>
+                <hr/>
+
+                <div class="row">
+
+                    <div class="col-sm-2" th:each="anuncio : ${anuncios}">
+                        <article class="col-item">
+                            <div class="photo">
+                                <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
+                                    <img th:src="${anuncio.livro.imagem}"
+                                         class="img-responsive" alt="Product Image"/> </a>
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price-details col-md-12">
+                                        <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
+                                        <div class="details">
+                                            <i class="fa fa-user"></i> <span
+                                                th:text="${anuncio.anunciante.username}"></span>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="#" class="btn btn-sm btn-outline-info"><i
+                                                    class="fa fa-info-circle"></i> Ver</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+
+                <hr/>
+                <div class="text-center">
+                    <a href="#" class="btn btn-sm btn-outline-success">Ver Mais</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

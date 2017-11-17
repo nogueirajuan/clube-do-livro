@@ -5,6 +5,7 @@ import com.each.cdl.integration.LivroIntegration;
 import com.each.cdl.integration.UserIntegration;
 import com.each.cdl.integration.responses.AnuncioResponse;
 import com.each.cdl.model.Anuncio;
+import com.each.cdl.model.Categoria;
 import com.each.cdl.model.Livro;
 import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +89,7 @@ public class LivroController {
                                               @RequestParam String autor,
                                               @RequestParam String descricao,
                                               @RequestParam String dataPublicacao,
+                                              @RequestParam Long categoria,
                                               @RequestParam String foto) {
 
         ModelAndView mav = new ModelAndView("redirect:/livro/meus-livros");
@@ -101,6 +103,7 @@ public class LivroController {
         novoLivro.setImagem(foto);
         novoLivro.setTitulo(titulo);
         novoLivro.setIsbn(isbn);
+        novoLivro.setCategoria(new Categoria(categoria));
 
         Livro livro = livroIntegration.cadastrarLivro(novoLivro);
 

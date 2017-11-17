@@ -64,6 +64,7 @@ public class LivroIntegration {
         map.put("isbn", livro.getIsbn());
         map.put("titulo", livro.getTitulo());
         map.put("dataPublicacao", livro.getDataPublicacao());
+        map.put("idCategoria", livro.getCategoria().getId().toString());
 
         String url = properties.getBookshareServer() + properties.getLivrosPrefix() + properties.getLivrosCadastrar();
 

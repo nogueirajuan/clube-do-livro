@@ -5,6 +5,7 @@ import com.each.cdl.integration.LivroIntegration;
 import com.each.cdl.integration.UserIntegration;
 import com.each.cdl.model.Anuncio;
 import com.each.cdl.model.Livro;
+import com.each.cdl.config.Constants;
 import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class AnuncioController {
     @Autowired
     UserIntegration userIntegration;
 
+    @Autowired
+    HttpSession httpSession;
+
     @RequestMapping("busca")
     public ModelAndView buscaAnuncio(@RequestParam String nome){
         return new ModelAndView("busca");
@@ -50,12 +54,13 @@ public class AnuncioController {
     @RequestMapping("cadastrar-anuncio-request")
     public ModelAndView cadastrarAnuncioRequest(@RequestParam String descricao, @RequestParam String idLivro){
 
-//
-//        Anuncio novoAnuncio = new Anuncio();
-//        novoAnuncio.setDescricao(descricao);
-//        novoAnuncio.setLivro(new Livro(idLivro));
 
-        anuncioIntegration.cadastrarAnuncio(descricao, idLivro, new Anuncio());
+        Anuncio novoAnuncio = new Anuncio();
+        novoAnuncio.setDescricao(descricao);
+        novoAnuncio.setLivro(new Livro(idLivro));
+        novoAnuncio.setAnunciante((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR));
+
+        anuncioIntegration.cadastrarAnuncio(novoAnuncio);
 
         return new ModelAndView("redirect:/livro/meus-livros");
 

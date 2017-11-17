@@ -83,11 +83,11 @@ public class AnuncioIntegration {
         return result;
     }
 
-    public void cadastrarAnuncio(String descricao, String idLivro, Anuncio anuncio) {
+    public void cadastrarAnuncio(Anuncio anuncio) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("livroID", idLivro);
-        map.put("anunciante", "nogueirajuan");
-        map.put("descricao", descricao);
+        map.put("livroID", anuncio.getLivro().getIsbn());
+        map.put("anunciante", anuncio.getAnunciante().getUsername());
+        map.put("descricao", anuncio.getDescricao());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

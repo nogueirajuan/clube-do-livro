@@ -1,5 +1,6 @@
 package com.each.cdl.controller;
 
+import com.each.cdl.config.Constants;
 import com.each.cdl.integration.UserIntegration;
 import com.each.cdl.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,11 @@ public class SetupController {
     @Autowired
     UserIntegration userIntegration;
 
+    @Autowired
+    HttpSession session;
+
     @RequestMapping("/init")
-    public ModelAndView init(HttpSession session, RedirectAttributes ra){
+    public ModelAndView init(RedirectAttributes ra){
 
         ModelAndView mav = new ModelAndView("redirect:/");
 
@@ -32,7 +36,7 @@ public class SetupController {
 
         Usuario user = userIntegration.findUserByUsername(username);
 
-        session.setAttribute("leitor", user);
+        session.setAttribute(Constants.HTTP_SESSION_LEITOR, user);
 
         return mav;
     }
