@@ -21,7 +21,7 @@ public class ChatIntegration {
     public MensagemResponse enviarMensagem(Mensagem mensagem) {
         try {
             return Unirest
-                    .post(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatEnviarMensagem())
+                    .post(properties.getBookshareServer() + properties.getChatEnviarMensagem())
                     .header("Content-Type", "application/json")
                     .body(mensagem)
                     .asObject(MensagemResponse.class)
@@ -35,7 +35,7 @@ public class ChatIntegration {
     public Mensagem[] getMensagens(String sender, String receiver) {
         try {
             return Unirest
-                    .get(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatGetMensagens())
+                    .get(properties.getBookshareServer() + properties.getChatGetMensagens())
                     .queryString("sender", sender)
                     .queryString("receiver", receiver)
                     .asObject(Mensagem[].class)
@@ -50,7 +50,7 @@ public class ChatIntegration {
     public String[] getDestinatarios(String sender) {
         try {
             return Unirest
-                    .get(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatGetDestinatarios())
+                    .get(properties.getBookshareServer() + properties.getChatGetDestinatarios())
                     .queryString("sender", sender)
                     .asObject(String[].class)
                     .getBody();
