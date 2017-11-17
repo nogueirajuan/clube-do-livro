@@ -2,16 +2,16 @@ package com.each.cdl.controller;
 
 import com.each.cdl.config.Constants;
 import com.each.cdl.integration.ChatIntegration;
-import com.each.cdl.integration.responses.MensagemResponse;
-import com.each.cdl.model.Mensagem;
 import com.each.cdl.model.Usuario;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/chat")
@@ -20,6 +20,8 @@ public class ChatController {
 
     @Autowired
     HttpSession httpSession;
+
+    private static final Logger log = LoggerFactory.getLogger(ChatIntegration.class);
 
     @Autowired
     public ChatController(ChatIntegration chatIntegration) {
@@ -37,7 +39,12 @@ public class ChatController {
     public ModelAndView conversas() {
 
         ModelAndView mav = new ModelAndView("chat");
+
+        log.debug("usuario: " + ((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername());
+
         String[] destinatarios = chatIntegration.getDestinatarios(((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername());
+
+        log.debug("conversas: " + destinatarios);
 
         mav.addObject("chats", destinatarios);
         return mav;
