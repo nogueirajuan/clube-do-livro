@@ -40,11 +40,11 @@ public class ChatController {
 
         ModelAndView mav = new ModelAndView("chat");
 
-        log.debug("usuario: " + ((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername());
+        log.info("usuario: " + ((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername());
 
         String[] destinatarios = chatIntegration.getDestinatarios(((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername());
 
-        log.debug("conversas: " + destinatarios);
+        log.info("conversas: " + destinatarios);
 
         mav.addObject("chats", destinatarios);
         return mav;
