@@ -36,9 +36,8 @@ public class MensagemController {
     public ModelAndView chat(@RequestParam String user) {
         ModelAndView mav = new ModelAndView("chat");
 
-        Mensagem[] mensagens = chatIntegration.getMensagens(((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername(), user);
-
-        mav.addObject("mensagens", mensagens);
+//        Mensagem[] mensagens = chatIntegration.getMensagens(((Usuario) httpSession.getAttribute(Constants.HTTP_SESSION_LEITOR)).getUsername(), user);
+//        mav.addObject("mensagens", mensagens);
 
         return mav;
     }

@@ -36,8 +36,8 @@ public class ChatIntegration {
         try {
             return Unirest
                     .get(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatGetMensagens())
-                    .routeParam("sender", sender)
-                    .routeParam("receiver", receiver)
+                    .queryString("sender", sender)
+                    .queryString("receiver", receiver)
                     .asObject(Mensagem[].class)
                     .getBody();
 
@@ -51,7 +51,7 @@ public class ChatIntegration {
         try {
             return Unirest
                     .get(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatGetDestinatarios())
-                    .routeParam("sender", sender)
+                    .queryString("sender", sender)
                     .asObject(String[].class)
                     .getBody();
         } catch (UnirestException e) {

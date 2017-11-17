@@ -26,12 +26,12 @@ public class ChatController {
         this.chatIntegration = chatIntegration;
     }
 
-    @PutMapping("/enviar-mensagem")
-    public MensagemResponse enviarMensagem(@RequestParam("sender") String sender,
-                                           @RequestParam("receiver") String receiver,
-                                           @RequestParam("content") String content) {
-        return chatIntegration.enviarMensagem(new Mensagem(sender, receiver, content, new Date()));
-    }
+//    @PutMapping("/enviar-mensagem")
+//    public MensagemResponse enviarMensagem(@RequestParam("sender") String sender,
+//                                           @RequestParam("receiver") String receiver,
+//                                           @RequestParam("content") String content) {
+//        return chatIntegration.enviarMensagem(new Mensagem(sender, receiver, content, new Date()));
+//    }
 
     @GetMapping("/conversas")
     public ModelAndView conversas() {
@@ -43,15 +43,15 @@ public class ChatController {
         return mav;
     }
 
-    @GetMapping("/get-mensagens")
-    public Mensagem[] getMensagens(@RequestParam("sender") String sender,
-                                   @RequestParam("receiver") String receiver) {
-        return chatIntegration.getMensagens(sender, receiver);
-    }
-
-    @GetMapping("/get-destinatarios")
-    public String[] getDestinatarios(@RequestParam("sender") String sender) {
-        return chatIntegration.getDestinatarios(sender);
-    }
+//    @GetMapping("/get-mensagens")
+//    public Mensagem[] getMensagens(@RequestParam("sender") String sender,
+//                                   @RequestParam("receiver") String receiver) {
+//        return chatIntegration.getMensagens(sender, receiver);
+//    }
+//
+//    @GetMapping("/get-destinatarios")
+//    public String[] getDestinatarios(@RequestParam("sender") String sender) {
+//        return chatIntegration.getDestinatarios(sender);
+//    }
 
 }

@@ -1,7 +1,6 @@
 <div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
      layout:decorator="masterpages/page">
     <div layout:fragment="content">
-        <script th:src="@{../js/chat.js}"></script>
         <div class="container content">
             <div class="clearfix">
 
@@ -14,16 +13,14 @@
                         </div>
                         <div class="form-horizontal" style="width: 100%">
                             <hr/>
-                            <div class="form-group" style="width: 100%">
-                                <form name="novaMensagem" style="width: 100%">
-                                    <div class="input-group" style="width: 100%">
-                                    <span class="input-group-btn" style="width: 100%">
-									</span>
-
-                                        <input type="hidden" th:value="${param.user[0]}" id="sender"/>
-                                        <input type="hidden" th:value="${session.LEITOR.username}" id="receiver"/>
+                            <div class="form-group" style="width: 100%; float: right">
+                                <form name="novaMensagem" style="width: 100%; float: right">
+                                    <div class="input-group" style="width: 100%; float: right">
+                                        <input type="hidden" th:value="${session.LEITOR.username}" id="sender"/>
+                                        <input type="hidden" th:value="${param.user[0]}" id="receiver"/>
                                         <input id="inputMensagem" name="inputMensagem" type="text" class="form-control"
-                                               style="width: 90%;" placeholder="Insira sua mensagem aqui"/>
+                                        style="width: 90%;" placeholder="Insira sua mensagem aqui"/>
+
                                         <button id="btnEnviarMensagem" name="btnEnviarMensagem"
                                                 style="position: inherit" class="btn btn-secondary" type="button">Enviar
                                         </button>
