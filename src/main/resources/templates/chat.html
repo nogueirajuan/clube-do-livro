@@ -14,18 +14,18 @@
                         <div class="form-horizontal" style="width: 100%">
                             <hr/>
                             <div class="form-group" style="width: 100%; float: right">
-                                <form name="novaMensagem" style="width: 100%; float: right">
+                                <div name="novaMensagem" style="width: 100%; float: right;">
                                     <div class="input-group" style="width: 100%; float: right">
                                         <input type="hidden" th:value="${session.LEITOR.username}" id="sender"/>
                                         <input type="hidden" th:value="${param.user[0]}" id="receiver"/>
                                         <input id="inputMensagem" name="inputMensagem" type="text" class="form-control"
                                         style="width: 90%;" placeholder="Insira sua mensagem aqui"/>
 
-                                        <button id="btnEnviarMensagem" name="btnEnviarMensagem"
+                                        <button type="button" id="btnEnviarMensagem" name="btnEnviarMensagem"
                                                 style="position: inherit" class="btn btn-secondary" type="button">Enviar
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div> <!-- end chat-history -->
