@@ -35,18 +35,14 @@ var moduloAjax = (function () {
     // var endpoint = 'http://localhost:9999';
     var endpoint = 'https://rp2-bookshare-backend.herokuapp.com';
     var urlEnviarMensagem = '/enviar-mensagem';
-    var urlGetMensagens = '/get-mensagens?sender=nicolasmoura&receiver=nogueirajuan';
-
-    function getMensagens(callback) {
-        $.get(endpoint + urlGetMensagens, callback);
+    var urlGetMensagens = '/get-mensagens';
+    function getMensagens(sender, receiver, callback) {
+        var finalEndpoint = endpoint + urlGetMensagens + '?sender=' + sender + '&receiver=' + receiver;
+        $.get(finalEndpoint, callback);
     }
 
     function salvarMensagem(sender, receiver, textoMsg) {
         var data = {sender: sender, receiver: receiver, content: textoMsg};
-        // $.post(endpoint + urlEnviarMensagem, data, function (response) {
-        //     console.log(sucesso);
-        // })
-
         $.ajax ({
             url: endpoint + urlEnviarMensagem,
             type: "POST",
@@ -54,7 +50,7 @@ var moduloAjax = (function () {
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function(){
-                console.log('FOI, PORRA!');
+                console.log('Mensagem posted.');
             }
         });
     }
@@ -67,7 +63,7 @@ var moduloAjax = (function () {
 })();
 
 var moduloApp = (function () {
-    var username = 'nicolasmoura';
+    var username = document.querySelector('#sender').value;
 
     function verifyNewMessages(mensagens) {
         for (mensagem in mensagens) {
@@ -77,12 +73,12 @@ var moduloApp = (function () {
         }
     }
 
-    var ajaxInterval = window.setInterval(function () {
-        moduloAjax.getMensagens(verifyNewMessages)
-    }, 500);
-
     var sender = document.querySelector('#sender').value;
     var receiver = document.querySelector('#receiver').value;
+
+    var ajaxInterval = window.setInterval(function () {
+        moduloAjax.getMensagens(sender, receiver, verifyNewMessages)
+    }, 500);
     document.querySelector('#btnEnviarMensagem').onclick = function () {
         var textoMsg = document.querySelector('#inputMensagem').value;
         console.log(sender + ', ' + receiver + ', ' + textoMsg);
