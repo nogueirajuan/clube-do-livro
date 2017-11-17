@@ -7,35 +7,7 @@
         <h4>Busca de livros - <span th:if="${param.nome != null}" th:text="${param.nome[0]}"></span></h4>
         <hr/>
 
-        <div class="row">
-
-            <div class="col-sm-2" th:each="anuncio : ${anuncios}">
-                <article class="col-item">
-                    <div class="photo">
-                        <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
-                            <img th:src="${anuncio.livro.imagem}"
-                                 class="img-responsive" alt="Product Image"/> </a>
-                    </div>
-                    <div class="info">
-                        <div class="row">
-                            <div class="price-details col-md-12">
-                                <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
-                                <div class="details">
-                                    <i class="fa fa-user"></i> <span th:text="${anuncio.anunciante.username}"></span>
-                                </div>
-                                <div class="text-center">
-                                    <a href="#" class="btn btn-sm btn-outline-primary"><i
-                                            class="fa fa-commenting"></i> </a>
-                                    <a href="#" class="btn btn-sm btn-outline-info"><i
-                                            class="fa fa-info-circle"></i> Ver</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-        </div>
+        <div th:replace="fragments/layout/book-grid :: book-grid(anuncios=${anuncios})"></div>
 
     </div>
 

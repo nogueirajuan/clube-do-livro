@@ -6,8 +6,6 @@
         <!-- conteudo -->
         <h4>Minhas conversas</h4>
 
-        <div th:text="${'chats' + chats}"></div>
-
         <br/>
         <table class="table table-hover">
             <thead>
@@ -27,47 +25,42 @@
                     <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
-            <!--<tr>-->
-                <!--<td><i class="fa fa-calendar"></i> 29/09/2017 03:43</td>-->
-                <!--<td><i class="fa fa-user"></i> Luis Rosti</td>-->
-                <!--<td class="text-right">-->
-                    <!--&lt;!&ndash;<a href="chat.html" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>&ndash;&gt;-->
-                    <!--<a th:href="@{/mensagem/chat?user=luisrosti}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>-->
-                    <!--<a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>-->
-                <!--</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><i class="fa fa-calendar"></i> 29/09/2017 03:43</td>-->
-                <!--<td><i class="fa fa-user"></i> Nicolas Moura</td>-->
-                <!--<td class="text-right">-->
-                    <!--<a th:href="@{/mensagem/chat?user=nicolasmoura}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>-->
-                    <!--<a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>-->
-                <!--</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><i class="fa fa-calendar"></i> 29/09/2017 03:43</td>-->
-                <!--<td><i class="fa fa-user"></i> Luis Pierro</td>-->
-                <!--<td class="text-right">-->
-                    <!--<a th:href="@{/mensagem/chat?user=luispierro}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>-->
-                    <!--<a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>-->
-                <!--</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><i class="fa fa-calendar"></i> 29/09/2017 03:43</td>-->
-                <!--<td><i class="fa fa-user"></i> Heitor</td>-->
-                <!--<td class="text-right">-->
-                    <!--<a th:href="@{/mensagem/chat?user=heitor}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>-->
-                    <!--<a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>-->
-                <!--</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><i class="fa fa-calendar"></i> 29/09/2017 03:43</td>-->
-                <!--<td><i class="fa fa-user"></i> Fernando Garcia</td>-->
-                <!--<td class="text-right">-->
-                    <!--<a th:href="@{/mensagem/chat?user=fernandogarcia}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>-->
-                    <!--<a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>-->
-                <!--</td>-->
-            <!--</tr>-->
+            <tr>
+                <td><i class="fa fa-user"></i> Luis Rosti</td>
+                <td class="text-right">
+                    <!--<a href="chat.html" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>-->
+                    <a th:href="@{/mensagem/chat?user=luisrosti}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-user"></i> Nicolas Moura</td>
+                <td class="text-right">
+                    <a th:href="@{/mensagem/chat?user=nicolasmoura}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-user"></i> Luis Pierro</td>
+                <td class="text-right">
+                    <a th:href="@{/mensagem/chat?user=luispierro}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-user"></i> Heitor</td>
+                <td class="text-right">
+                    <a th:href="@{/mensagem/chat?user=heitor}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-user"></i> Fernando Garcia</td>
+                <td class="text-right">
+                    <a th:href="@{/mensagem/chat?user=fernandogarcia}" class="btn btn-sm btn-outline-info"><i class="fa fa-commenting-o"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-remove"></i></a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
