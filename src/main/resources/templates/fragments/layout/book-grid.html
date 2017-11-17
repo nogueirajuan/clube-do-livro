@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+</head>
+<body>
+<!-- header-section-starts -->
+<!--th:fragment="header"-->
+<header th:fragment="book-grid">
+
+    <div class="row">
+        <div class="col-sm-2" th:each="anuncio : ${anuncios}">
+            <article class="col-item">
+                <div class="photo">
+                    <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}">
+                        <img th:src="${anuncio.livro.imagem}"
+                             class="img-responsive" alt="Product Image"/> </a>
+                </div>
+                <div class="info">
+                    <div class="row">
+                        <div class="price-details col-md-12">
+                            <h1 th:text="${anuncio.livro.titulo}"></h1><br/>
+                            <div class="details">
+                                <i class="fa fa-user"></i> <span th:text="${anuncio.anunciante.username}"></span>
+                            </div>
+                            <div class="text-center">
+                                <a th:href="@{/livro/detalhe-livro(id=${anuncio.id})}"
+                                   class="btn btn-sm btn-outline-info"><i
+                                        class="fa fa-info-circle"></i> Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="text-center col-md-12">
+            <ul class="pagination">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <hr/>
+    <!--<div class="text-center">-->
+    <!--<a href="#" class="btn btn-sm btn-outline-success">Ver Mais</a>-->
+    <!--</div>-->
+
+</header>
+
+<!-- header-section-ends -->
+</body>
+</html>

@@ -26,6 +26,36 @@ public class BookShareProperties {
     @Value("${bookshare-server.anuncios.create}")
     private String anunciosCadastrar;
 
+    @Value("${bookshare-server.anuncios.find-by-like-book-name}")
+    private String anunciosFindByLikeBookName;
+
+    @Value("${bookshare-server.anuncios.find-by-category}")
+    private String anunciosFindByCategory;
+
+    /* Categorias */
+
+    @Value("${bookshare-server.categorias.prefix}")
+    private String categoriaPrefix;
+
+    @Value("${bookshare-server.categorias.find-all}")
+    private String categoriaFindAll;
+
+    @Value("${bookshare-server.categorias.cadastrar}")
+    private String categoriaCadastrar;
+
+    /* Avaliacoes */
+    @Value("${bookshare-server.avaliacao.prefix}")
+    private String avaliacaoPrefix;
+
+    @Value("${bookshare-server.avaliacao.find-by-livro}")
+    private String avaliacaoFindByLivro;
+
+    @Value("${bookshare-server.avaliacao.cadastrar}")
+    private String avaliacaoCadastrar;
+
+    @Value("${bookshare-server.avaliacao.delete}")
+    private String avaliacaoDelete;
+
     /* Livros */
     @Value("${bookshare-server.livros.prefix}")
     private String livrosPrefix;
@@ -204,5 +234,77 @@ public class BookShareProperties {
 
     public void setAnunciosCadastrar(String anunciosCadastrar) {
         this.anunciosCadastrar = anunciosCadastrar;
+    }
+
+    public String getAnunciosFindByLikeBookName() {
+        return anunciosFindByLikeBookName;
+    }
+
+    public void setAnunciosFindByLikeBookName(String anunciosFindByLikeBookName) {
+        this.anunciosFindByLikeBookName = anunciosFindByLikeBookName;
+    }
+
+    public String getCategoriaPrefix() {
+        return categoriaPrefix;
+    }
+
+    public void setCategoriaPrefix(String categoriaPrefix) {
+        this.categoriaPrefix = categoriaPrefix;
+    }
+
+    public String getCategoriaFindAll() {
+        return categoriaFindAll;
+    }
+
+    public void setCategoriaFindAll(String categoriaFindAll) {
+        this.categoriaFindAll = categoriaFindAll;
+    }
+
+    public String getCategoriaCadastrar() {
+        return categoriaCadastrar;
+    }
+
+    public void setCategoriaCadastrar(String categoriaCadastrar) {
+        this.categoriaCadastrar = categoriaCadastrar;
+    }
+
+    public String getAvaliacaoPrefix() {
+        return avaliacaoPrefix;
+    }
+
+    public void setAvaliacaoPrefix(String avaliacaoPrefix) {
+        this.avaliacaoPrefix = avaliacaoPrefix;
+    }
+
+    public String getAvaliacaoFindByLivro() {
+        return avaliacaoFindByLivro;
+    }
+
+    public void setAvaliacaoFindByLivro(String avaliacaoFindByLivro) {
+        this.avaliacaoFindByLivro = avaliacaoFindByLivro;
+    }
+
+    public String getAvaliacaoCadastrar() {
+        return avaliacaoCadastrar;
+    }
+
+    public void setAvaliacaoCadastrar(String avaliacaoCadastrar) {
+        this.avaliacaoCadastrar = avaliacaoCadastrar;
+    }
+
+    public String getAvaliacaoDelete() {
+        return avaliacaoDelete;
+    }
+
+    public void setAvaliacaoDelete(String avaliacaoDelete) {
+        this.avaliacaoDelete = avaliacaoDelete;
+    }
+
+    public String getAnunciosFindByCategory() {
+        return anunciosFindByCategory;
+    }
+
+    public void setAnunciosFindByCategory(String anunciosFindByCategory) {
+        this.anunciosFindByCategory = anunciosFindByCategory;
     }
 }

@@ -1,13 +1,8 @@
 package com.each.cdl.controller;
 
-import com.each.cdl.integration.AnuncioIntegration;
-import com.each.cdl.integration.LivroIntegration;
-import com.each.cdl.integration.UserIntegration;
+import com.each.cdl.integration.*;
 import com.each.cdl.integration.responses.AnuncioResponse;
-import com.each.cdl.model.Anuncio;
-import com.each.cdl.model.Categoria;
-import com.each.cdl.model.Livro;
-import com.each.cdl.model.Usuario;
+import com.each.cdl.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
@@ -44,6 +39,12 @@ public class LivroController {
     @Autowired
     UserIntegration userIntegration;
 
+    @Autowired
+    CategoriaIntegration categoriaIntegration;
+
+    @Autowired
+    AvaliacaoIntegration avaliacaoIntegration;
+
 
     @RequestMapping("meus-livros")
     public ModelAndView meusLivros() {
@@ -61,24 +62,36 @@ public class LivroController {
 
 
         AnuncioResponse anuncio = anuncioIntegration.buscaAnuncioPorId(id);
+        AnuncioResponse anunciosCategoria = anuncioIntegration.buscaAnuncioPorCategoria(anuncio.getAnuncio().getLivro().getCategoria().getId());
 
         List<Anuncio> anuncios = anuncioIntegration.buscaAnuncios();
+
+        String isbn = anuncio.getAnuncio().getLivro().getIsbn();
+        List<Avaliacao> avaliacoes = avaliacaoIntegration.findAllByLivro(isbn);
+
         mav.addObject("anuncios", anuncios);
         mav.addObject("anuncio", anuncio.getAnuncio());
+        mav.addObject("anunciosCategoria", anunciosCategoria.getAnuncios());
+        mav.addObject("avaliacoes", avaliacoes);
         return mav;
 
     }
 
     @RequestMapping("cadastrar-livro")
-    public String cadastrarLivro() {
-        return "cadastrar-livro";
+    public ModelAndView cadastrarLivro() {
+        ModelAndView mav = new ModelAndView("cadastrar-livro");
+
+        List<Categoria> categorias = categoriaIntegration.findAll();
+
+        mav.addObject("categorias", categorias);
+        return mav;
     }
 
     @RequestMapping("/busca")
-    public ModelAndView searchAnuncios() {
+    public ModelAndView searchAnuncios(@RequestParam String nome) {
         ModelAndView mav = new ModelAndView("busca");
 
-        List<Anuncio> anuncios = anuncioIntegration.buscaAnuncios();
+        List<Anuncio> anuncios = anuncioIntegration.buscaAnuncioPorNome(nome).getAnuncios();
         mav.addObject("anuncios", anuncios);
         return mav;
     }
@@ -92,7 +105,7 @@ public class LivroController {
                                               @RequestParam Long categoria,
                                               @RequestParam String foto) {
 
-        ModelAndView mav = new ModelAndView("redirect:/livro/meus-livros");
+        ModelAndView mav = new ModelAndView("redirect:/anuncio/cadastrar-anuncio");
         Livro novoLivro = new Livro();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

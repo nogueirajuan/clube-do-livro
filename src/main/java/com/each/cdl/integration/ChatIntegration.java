@@ -50,7 +50,7 @@ public class ChatIntegration {
     public String[] getDestinatarios(String sender) {
         try {
             return Unirest
-                    .get(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatGetMensagens())
+                    .get(properties.getBookshareServer() + properties.getChatPrefix() + properties.getChatGetDestinatarios())
                     .routeParam("sender", sender)
                     .asObject(String[].class)
                     .getBody();

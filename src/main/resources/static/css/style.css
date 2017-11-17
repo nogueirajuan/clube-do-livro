@@ -1,6 +1,7 @@
 /* Html elements */
 *{
     list-style-type: none;
+    outline: none;
 }
 
 ul li, ul{
@@ -13,6 +14,56 @@ ul li, ul{
 	height: 268px;
 	background: url('../imgs/header-bg.jpg') repeat-x;
 	margin-bottom: 10px;
+}
+
+#bookshare.navbar-default .navbar-brand {
+    color: rgba(255, 255, 255, 1);
+}
+#bookshare.navbar-default {
+    font-size: 12px;
+    background-color: rgba(10, 100, 73, 1);
+    border-width: 0px;
+    border-radius: 0px;
+}
+#bookshare.navbar-default .navbar-nav>li>a {
+    color: rgba(224, 224, 224, 1);
+    background-color: rgba(10, 100, 73, 1);
+}
+#bookshare.navbar-default .navbar-nav>li>a:hover,
+#bookshare.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(224, 224, 224, 1);
+    background-color: rgba(4, 84, 60, 1);
+}
+#bookshare.navbar-default .navbar-nav>.active>a,
+#bookshare.navbar-default .navbar-nav>.active>a:hover,
+#bookshare.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(224, 224, 224, 1);
+    background-color: rgba(4, 84, 60, 1);
+}
+#bookshare.navbar-default .navbar-toggle {
+    border-color: #04543c;
+}
+#bookshare.navbar-default .navbar-toggle:hover,
+#bookshare.navbar-default .navbar-toggle:focus {
+    background-color: #04543c;
+}
+#bookshare.navbar-default .navbar-toggle .icon-bar {
+    background-color: #04543c;
+}
+#bookshare.navbar-default .navbar-toggle:hover .icon-bar,
+#bookshare.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #0a6449;
+}
+
+@media (min-width:768px) {
+    .navbar-default {
+        min-height:30px;
+    }
+
+    .navbar-nav>li>a{
+        padding-bottom: 5px !important;
+        padding-top: 5px;
+    }
 }
 
 .logo{
@@ -44,7 +95,7 @@ ul li, ul{
 .content{
 	min-height: 500px;	
 	margin-bottom: 30px;
-    border: 1px solid red;
+    margin-top: 30px;
 }
 
 .essentials-nav{

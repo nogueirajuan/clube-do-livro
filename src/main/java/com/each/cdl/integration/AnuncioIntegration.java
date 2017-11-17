@@ -67,6 +67,22 @@ public class AnuncioIntegration {
         return result;
     }
 
+    public AnuncioResponse buscaAnuncioPorNome(String nome) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("bookName", nome);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindByLikeBookName();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        AnuncioResponse result = restTemplate.getForObject(url, AnuncioResponse.class, map);
+
+        return result;
+    }
+
     public AnuncioResponse buscaAnuncioPorUsername(String username) {
         HashMap<String, String> map = new HashMap<>();
         map.put("username", username);
@@ -75,6 +91,22 @@ public class AnuncioIntegration {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindByUsername();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        AnuncioResponse result = restTemplate.getForObject(url, AnuncioResponse.class, map);
+
+        return result;
+    }
+
+    public AnuncioResponse buscaAnuncioPorCategoria(Long idCategoria) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("idCategoria", idCategoria.toString());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindByCategory();
 
         RestTemplate restTemplate = new RestTemplate();
 

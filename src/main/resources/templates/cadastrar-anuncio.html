@@ -43,7 +43,7 @@
 
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="create-anuncio-box" style="display: none;">
                     <div class="row">
                         <div class="col-md-5">
                             <img class="img-responsive create-anuncio-book-view" id="selected-book-image"/>
@@ -94,6 +94,7 @@
                 var $selectedBookDescription = $("#selected-book-description");
                 var $selectedBookAuthor = $("#selected-book-author");
                 var $selectedBookIsbn = $("#selected-book-isbn");
+                var $anuncioBox = $("#create-anuncio-box");
 
                 $("#selectLivro").on('change', function () {
                     var optionSelected = $("option:selected", this);
@@ -106,6 +107,7 @@
                     $selectedBookDescription.html(books[bookListIndex].descricao);
                     $selectedBookAuthor.html(books[bookListIndex].autor);
                     $selectedBookIsbn.html(books[bookListIndex].isbn);
+                    $anuncioBox.show();
                 });
             });
             /*]]>*/

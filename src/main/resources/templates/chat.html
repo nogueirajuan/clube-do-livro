@@ -20,8 +20,8 @@
                                     <span class="input-group-btn" style="width: 100%">
 									</span>
 
-                                        <input type="hidden" value="nicolasmoura" id="sender"/>
-                                        <input type="hidden" value="nogueirajuan" id="receiver"/>
+                                        <input type="hidden" th:value="${param.user[0]}" id="sender"/>
+                                        <input type="hidden" th:value="${session.LEITOR.username}" id="receiver"/>
                                         <input id="inputMensagem" name="inputMensagem" type="text" class="form-control"
                                                style="width: 90%;" placeholder="Insira sua mensagem aqui"/>
                                         <button id="btnEnviarMensagem" name="btnEnviarMensagem"

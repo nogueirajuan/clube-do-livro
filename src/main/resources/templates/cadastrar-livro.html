@@ -17,8 +17,9 @@
 
                 <div class="form-group">
                     <label class="control-label">Categoria:</label>
-                    <select class="selectpicker form-control" data-live-search="true">
+                    <select class="selectpicker form-control" name="categoria" data-live-search="true">
                         <option>-- Selecione --</option>
+                        <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nome}"></option>
                     </select>
                 </div>
 
@@ -34,7 +35,7 @@
 
                 <div class="form-group">
                     <label class="control-label">Descrição:</label>
-                    <textarea name="descricao" class="form-control"></textarea>
+                    <textarea name="descricao" maxlength="2000" class="form-control"></textarea>
                 </div>
 
                 <div class="form-group">

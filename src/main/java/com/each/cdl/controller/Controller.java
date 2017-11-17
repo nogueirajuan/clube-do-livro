@@ -36,9 +36,9 @@ public class Controller {
         ModelAndView mav = new ModelAndView("index");
         log.log(Level.INFO, "[CHAIN RESERVAS]-[PAGE REQUEST]-[INDEX]");
 
-        httpSession.setAttribute("teste", "piroca");
-
         List<Anuncio> anuncios = anuncioIntegration.buscaAnuncios();
+
+
         mav.addObject("anuncios", anuncios);
         return mav;
     }

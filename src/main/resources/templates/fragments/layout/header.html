@@ -8,43 +8,77 @@
 <header th:fragment="header">
 
     <div class="header">
-        <nav class="navbar navbar navbar-expand-lg">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto" style="width: 70%;">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/}"><span class="fa fa-home"></span> Página Inicial</a>
+        <div id="bookshare" class="navbar navbar-default " role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menubuilder">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a th:href="@{/}"><span class="fa fa-home"></span> Página Inicial</a>
                         </li>
-                        <li class="nav-item" th:if="${session.LEITOR != null}">
-                            <a class="nav-link" th:href="@{/livro/meus-livros}"><span class="fa fa-book"></span> Meus Livros</a>
+                        <li th:if="${session.LEITOR != null}">
+                            <a th:href="@{/livro/meus-livros}"><span class="fa fa-book"></span> Meus
+                                Livros</a>
                         </li>
-                        <li class="nav-item" th:if="${session.LEITOR != null}">
-                            <a class="nav-link" th:href="@{/mensagem/mensagens}"><span class="fa fa-commenting-o"></span> Mensagens</a>
+                        <li th:if="${session.LEITOR != null}">
+                            <a th:href="@{/mensagem/mensagens}"><span
+                                    class="fa fa-commenting-o"></span> Mensagens</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <!--<li class="nav-item">-->
-                            <!--<a class="nav-link" th:href="@{/usuario/meu-cadastro}"><span class="fa fa-user"></span> Meu-->
-                                <!--'tro</a>-->
-                        <!--</li>-->
-                        <li class="nav-item" th:if="${session.LEITOR != null}">
-                            <a class="nav-link" th:href="@{/logout}"><span class="fa fa-power-off"></span> Sair</a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li th:if="${session.LEITOR != null}">
+                            <a th:href="@{/logout}"><span class="fa fa-power-off"></span> Sair</a>
                         </li>
-                        <li class="nav-item" th:if="${session.LEITOR == null}">
-                            <a class="nav-link" th:href="@{/logout}"><span class="fa fa-users"></span> Acessar</a>
+                        <li th:if="${session.LEITOR == null}">
+                            <a th:href="@{/logout}"><span class="fa fa-users"></span> Acessar</a>
                         </li>
                     </ul>
                 </div>
-
-
             </div>
-        </nav>
+        </div>
+
+
+        <!--<nav class="navbar navbar navbar-expand-lg">-->
+            <!--<div class="container">-->
+                <!--<button class="navbar-toggler" type="button" data-toggle="collapse"-->
+                        <!--data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"-->
+                        <!--aria-expanded="false" aria-label="Toggle navigation">-->
+                    <!--<span class="navbar-toggler-icon"></span>-->
+                <!--</button>-->
+
+                <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+                    <!--<ul class="navbar-nav mr-auto" style="width: 70%;">-->
+                        <!--<li class="nav-item">-->
+                            <!--<a class="nav-link" th:href="@{/}"><span class="fa fa-home"></span> Página Inicial</a>-->
+                        <!--</li>-->
+                        <!--<li class="nav-item" th:if="${session.LEITOR != null}">-->
+                            <!--<a class="nav-link" th:href="@{/livro/meus-livros}"><span class="fa fa-book"></span> Meus Livros</a>-->
+                        <!--</li>-->
+                        <!--<li class="nav-item" th:if="${session.LEITOR != null}">-->
+                            <!--<a class="nav-link" th:href="@{/mensagem/mensagens}"><span class="fa fa-commenting-o"></span> Mensagens</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<ul class="navbar-nav mr-auto">-->
+                        <!--&lt;!&ndash;<li class="nav-item">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a class="nav-link" th:href="@{/usuario/meu-cadastro}"><span class="fa fa-user"></span> Meu&ndash;&gt;-->
+                                <!--&lt;!&ndash;'tro</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--<li class="nav-item" th:if="${session.LEITOR != null}">-->
+                            <!--<a class="nav-link" th:href="@{/logout}"><span class="fa fa-power-off"></span> Sair</a>-->
+                        <!--</li>-->
+                        <!--<li class="nav-item" th:if="${session.LEITOR == null}">-->
+                            <!--<a class="nav-link" th:href="@{/logout}"><span class="fa fa-users"></span> Acessar</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+
+            <!--</div>-->
+        <!--</nav>-->
 
 
         <div class="container">
