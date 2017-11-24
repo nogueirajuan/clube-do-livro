@@ -37,9 +37,11 @@ public class Controller {
         log.log(Level.INFO, "[CHAIN RESERVAS]-[PAGE REQUEST]-[INDEX]");
 
         List<Anuncio> anuncios = anuncioIntegration.buscaAnuncios();
+        List<Anuncio> anunciosMaisAvaliados = anuncioIntegration.buscaAnunciosMaisAvaliados();
 
 
         mav.addObject("anuncios", anuncios);
+        mav.addObject("anunciosMaisAvaliados", anunciosMaisAvaliados);
         return mav;
     }
 }

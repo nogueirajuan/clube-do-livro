@@ -21,7 +21,7 @@
                     <!-- Datos del vendedor y titulo del producto -->
                     <h3 th:text="${anuncio.livro.titulo}"></h3>
                     <h5 style="color:#337ab7;">
-                        Anunciado por <a href="#" th:text="${anuncio.anunciante.nome}"></a>
+                        Anunciado por <a th:href="@{/usuario/cadastro(username=${anuncio.anunciante.username})}" th:text="${anuncio.anunciante.username}"></a>
                         <a class="btn btn-xs btn-info" href=""><span class="fa fa-heart-o"></span> Seguir</a>
                     </h5>
 

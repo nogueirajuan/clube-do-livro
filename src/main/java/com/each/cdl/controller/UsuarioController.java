@@ -28,12 +28,15 @@ public class UsuarioController {
 
     HttpSession httpSession;
 
-    @RequestMapping("meu-cadastro")
-    public ModelAndView meuCadastro() {
-        ModelAndView mav = new ModelAndView("meu-cadastro");
+    @RequestMapping("cadastro")
+    public ModelAndView meuCadastro(@RequestParam String username) {
+        ModelAndView mav = new ModelAndView("cadastro");
 
-        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername("nogueirajuan");
+        Usuario user = userIntegration.findUserByUsername(username);
+        AnuncioResponse anunciosUsername = anuncioIntegration.buscaAnuncioPorUsername(username);
+
         mav.addObject("anuncios", anunciosUsername.getAnuncios());
+        mav.addObject("usuario", user);
 
         return mav;
     }

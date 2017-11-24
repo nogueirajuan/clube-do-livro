@@ -32,6 +32,9 @@ public class BookShareProperties {
     @Value("${bookshare-server.anuncios.find-by-category}")
     private String anunciosFindByCategory;
 
+    @Value("${bookshare-server.anuncios.find-all-order-avaliacao}")
+    private String anunciosFindAllOrderByAvaliacao;
+
     /* Categorias */
 
     @Value("${bookshare-server.categorias.prefix}")
@@ -306,5 +309,13 @@ public class BookShareProperties {
 
     public void setAnunciosFindByCategory(String anunciosFindByCategory) {
         this.anunciosFindByCategory = anunciosFindByCategory;
+    }
+
+    public String getAnunciosFindAllOrderByAvaliacao() {
+        return anunciosFindAllOrderByAvaliacao;
+    }
+
+    public void setAnunciosFindAllOrderByAvaliacao(String anunciosFindAllOrderByAvaliacao) {
+        this.anunciosFindAllOrderByAvaliacao = anunciosFindAllOrderByAvaliacao;
     }
 }

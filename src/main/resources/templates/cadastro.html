@@ -1,0 +1,28 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+     layout:decorator="masterpages/page">
+
+
+    <div layout:fragment="content">
+        <!-- conteudo -->
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                                <h2 th:text="${usuario.nome + ' ' + usuario.sobrenome}"></h2>
+                                <p><strong>E-mail: </strong> <span th:text="${usuario.email}"></span> </p>
+                        <p><strong>Data de Nascimento: </strong> <span th:text="${#dates.format(usuario.dataNascimento, 'dd/MMM/yyyy')}" ></span> </p>
+                        <button class="btn btn-xs btn-info"><span class="fa fa-heart-o"></span> seguir</button>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Anúncios desse usuário</h4>
+            <div th:replace="fragments/layout/book-grid :: book-grid(anuncios=${anuncios})"></div>
+
+        </div>
+    </div>
+
+
+</div>

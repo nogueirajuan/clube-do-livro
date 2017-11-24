@@ -51,6 +51,21 @@ public class AnuncioIntegration {
         return result.getAnuncios();
     }
 
+    public List<Anuncio> buscaAnunciosMaisAvaliados() {
+        HashMap<String, String> map = new HashMap<>();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String url = properties.getBookshareServer() + properties.getAnunciosPrefix() + properties.getAnunciosFindAllOrderByAvaliacao();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        AnuncioResponse result = restTemplate.getForObject(url, AnuncioResponse.class);
+
+        return result.getAnuncios();
+    }
+
     public AnuncioResponse buscaAnuncioPorId(String id) {
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);

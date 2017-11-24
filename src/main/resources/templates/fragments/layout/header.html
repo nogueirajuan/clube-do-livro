@@ -28,6 +28,10 @@
                             <a th:href="@{/mensagem/mensagens}"><span
                                     class="fa fa-commenting-o"></span> Mensagens</a>
                         </li>
+                        <li th:if="${session.LEITOR != null}">
+                            <a th:href="@{/usuario/cadastro(username=${session.LEITOR.username})}"><span
+                                    class="fa fa-user"></span> Meu Cadastro</a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${session.LEITOR != null}">
