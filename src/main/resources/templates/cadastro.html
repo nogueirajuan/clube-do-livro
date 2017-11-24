@@ -13,7 +13,7 @@
                                 <h2 th:text="${usuario.nome + ' ' + usuario.sobrenome}"></h2>
                                 <p><strong>E-mail: </strong> <span th:text="${usuario.email}"></span> </p>
                         <p><strong>Data de Nascimento: </strong> <span th:text="${#dates.format(usuario.dataNascimento, 'dd/MMM/yyyy')}" ></span> </p>
-                        <button class="btn btn-xs btn-info"><span class="fa fa-heart-o"></span> seguir</button>
+                        <button th:if="${session.LEITOR != null}" class="btn btn-xs btn-info"><span class="fa fa-heart-o"></span> seguir</button>
                     </div>
                 </div>
             </div>
